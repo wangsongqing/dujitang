@@ -1,0 +1,156 @@
+[2020-01-08 17:02:06 *2590.0]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Declaration of App\HttpController\R::onException(App\HttpController\Throwable $throwable): string must be compatible with EasySwoole\Template\RenderInterface::onException(Throwable $throwable): string in /home/wwwroot/dujitang/App/HttpController/R.php on line 7
+[2020-01-08 17:02:06 $2580.0]	WARNING	swManager_check_exit_status: worker#0[pid=2590] abnormal exit, status=255, signal=0
+[2020-01-08 23:12:33 *3915.7]	WARNING	swSignalfd_onSignal (ERRNO 707): Unable to find callback function for signal Hangup: 1
+[2020-01-08 23:12:33 #3897.1]	WARNING	swSignalfd_onSignal (ERRNO 707): Unable to find callback function for signal Hangup: 1
+[2020-01-08 23:12:33 *3908.0]	WARNING	swSignalfd_onSignal (ERRNO 707): Unable to find callback function for signal Hangup: 1
+[2020-01-08 23:12:33 *3909.1]	WARNING	swSignalfd_onSignal (ERRNO 707): Unable to find callback function for signal Hangup: 1
+[2020-01-08 23:12:33 ^3903.11]	WARNING	swSignalfd_onSignal (ERRNO 707): Unable to find callback function for signal Hangup: 1
+[2020-01-08 23:12:33 ^3905.13]	WARNING	swSignalfd_onSignal (ERRNO 707): Unable to find callback function for signal Hangup: 1
+[2020-01-08 23:12:33 ^3902.10]	WARNING	swSignalfd_onSignal (ERRNO 707): Unable to find callback function for signal Hangup: 1
+[2020-01-08 23:12:33 ^3900.8]	WARNING	swSignalfd_onSignal (ERRNO 707): Unable to find callback function for signal Hangup: 1
+[2020-01-08 23:12:33 ^3907.15]	WARNING	swSignalfd_onSignal (ERRNO 707): Unable to find callback function for signal Hangup: 1
+[2020-01-08 23:12:33 *3912.4]	WARNING	swSignalfd_onSignal (ERRNO 707): Unable to find callback function for signal Hangup: 1
+[2020-01-08 23:12:33 *3913.5]	WARNING	swSignalfd_onSignal (ERRNO 707): Unable to find callback function for signal Hangup: 1
+[2020-01-08 23:12:33 *3910.2]	WARNING	swSignalfd_onSignal (ERRNO 707): Unable to find callback function for signal Hangup: 1
+[2020-01-08 23:12:33 *3911.3]	WARNING	swSignalfd_onSignal (ERRNO 707): Unable to find callback function for signal Hangup: 1
+[2020-01-08 23:12:33 ^3901.9]	WARNING	swSignalfd_onSignal (ERRNO 707): Unable to find callback function for signal Hangup: 1
+[2020-01-08 23:12:33 ^3904.12]	WARNING	swSignalfd_onSignal (ERRNO 707): Unable to find callback function for signal Hangup: 1
+[2020-01-08 23:12:33 ^3906.14]	WARNING	swSignalfd_onSignal (ERRNO 707): Unable to find callback function for signal Hangup: 1
+[2020-01-08 23:12:33 $3898.0]	WARNING	swSignal_callback (ERRNO 707): Unable to find callback function for signal Hangup: 1
+[2020-01-08 23:12:33 *3914.6]	WARNING	swSignalfd_onSignal (ERRNO 707): Unable to find callback function for signal Hangup: 1
+[2020-01-09 09:08:17 *3908.0]	WARNING	swSignalfd_onSignal (ERRNO 707): Unable to find callback function for signal Broken pipe: 13
+[2020-01-09 09:09:26 #3897.1]	INFO	Server is shutdown now
+[2020-01-09 10:02:56 *5180.0]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Class 'App\HttpController\Base' not found in /home/wwwroot/dujitang/App/HttpController/Index.php on line 9
+[2020-01-09 10:02:56 $5170.0]	WARNING	swManager_check_exit_status: worker#0[pid=5180] abnormal exit, status=255, signal=0
+[2020-01-09 23:15:59 *5665.7]	WARNING	swSignalfd_onSignal (ERRNO 707): Unable to find callback function for signal Hangup: 1
+[2020-01-09 23:15:59 *5664.6]	WARNING	swSignalfd_onSignal (ERRNO 707): Unable to find callback function for signal Hangup: 1
+[2020-01-09 23:15:59 *5663.5]	WARNING	swSignalfd_onSignal (ERRNO 707): Unable to find callback function for signal Hangup: 1
+[2020-01-09 23:15:59 *5662.4]	WARNING	swSignalfd_onSignal (ERRNO 707): Unable to find callback function for signal Hangup: 1
+[2020-01-09 23:15:59 *5661.3]	WARNING	swSignalfd_onSignal (ERRNO 707): Unable to find callback function for signal Hangup: 1
+[2020-01-09 23:15:59 *5660.2]	WARNING	swSignalfd_onSignal (ERRNO 707): Unable to find callback function for signal Hangup: 1
+[2020-01-09 23:15:59 *5659.1]	WARNING	swSignalfd_onSignal (ERRNO 707): Unable to find callback function for signal Hangup: 1
+[2020-01-09 23:15:59 *5658.0]	WARNING	swSignalfd_onSignal (ERRNO 707): Unable to find callback function for signal Hangup: 1
+[2020-01-09 23:15:59 ^5657.15]	WARNING	swSignalfd_onSignal (ERRNO 707): Unable to find callback function for signal Hangup: 1
+[2020-01-09 23:15:59 ^5656.14]	WARNING	swSignalfd_onSignal (ERRNO 707): Unable to find callback function for signal Hangup: 1
+[2020-01-09 23:15:59 ^5655.13]	WARNING	swSignalfd_onSignal (ERRNO 707): Unable to find callback function for signal Hangup: 1
+[2020-01-09 23:15:59 ^5654.12]	WARNING	swSignalfd_onSignal (ERRNO 707): Unable to find callback function for signal Hangup: 1
+[2020-01-09 23:15:59 ^5653.11]	WARNING	swSignalfd_onSignal (ERRNO 707): Unable to find callback function for signal Hangup: 1
+[2020-01-09 23:15:59 ^5652.10]	WARNING	swSignalfd_onSignal (ERRNO 707): Unable to find callback function for signal Hangup: 1
+[2020-01-09 23:15:59 ^5651.9]	WARNING	swSignalfd_onSignal (ERRNO 707): Unable to find callback function for signal Hangup: 1
+[2020-01-09 23:15:59 ^5650.8]	WARNING	swSignalfd_onSignal (ERRNO 707): Unable to find callback function for signal Hangup: 1
+[2020-01-09 23:15:59 $5648.0]	WARNING	swSignal_callback (ERRNO 707): Unable to find callback function for signal Hangup: 1
+[2020-01-09 23:15:59 #5647.1]	WARNING	swSignalfd_onSignal (ERRNO 707): Unable to find callback function for signal Hangup: 1
+[2020-01-10 11:18:09 #5647.1]	INFO	Server is shutdown now
+[43m[2020-01-11 02:01:27][DEBUG][NOTICE] : [PDO::prepare(): send of 32 bytes failed with errno=32 Broken pipe at file:/home/wwwroot/dujitang/vendor/topthink/think-orm/src/db/PDOConnection.php line:695][0m
+[45m[2020-01-11 02:01:27][DEBUG][WARNING] : [Error while sending STMT_PREPARE packet. PID=9652 at file:/home/wwwroot/dujitang/vendor/topthink/think-orm/src/db/PDOConnection.php line:695][0m
+[41m[2020-01-11 02:01:27][DEBUG][ERROR] : [SQLSTATE[HY000]: General error: 2006 MySQL server has gone away at file:/home/wwwroot/dujitang/vendor/topthink/think-orm/src/db/PDOConnection.php line:722][0m
+[2020-01-11 02:01:27 *9652.0]	WARNING	swSignalfd_onSignal (ERRNO 707): Unable to find callback function for signal Broken pipe: 13
+[41m[2020-01-11 03:47:52][DEBUG][ERROR] : [SQLSTATE[HY000]: General error: 2006 MySQL server has gone away at file:/home/wwwroot/dujitang/vendor/topthink/think-orm/src/db/PDOConnection.php line:722][0m
+[41m[2020-01-11 07:51:57][DEBUG][ERROR] : [SQLSTATE[HY000]: General error: 2006 MySQL server has gone away at file:/home/wwwroot/dujitang/vendor/topthink/think-orm/src/db/PDOConnection.php line:722][0m
+[41m[2020-01-11 18:51:15][DEBUG][ERROR] : [SQLSTATE[HY000]: General error: 2006 MySQL server has gone away at file:/home/wwwroot/dujitang/vendor/topthink/think-orm/src/db/PDOConnection.php line:722][0m
+[41m[2020-01-11 18:51:15][DEBUG][ERROR] : [SQLSTATE[HY000]: General error: 2006 MySQL server has gone away at file:/home/wwwroot/dujitang/vendor/topthink/think-orm/src/db/PDOConnection.php line:722][0m
+[41m[2020-01-11 18:51:15][DEBUG][ERROR] : [SQLSTATE[HY000]: General error: 2006 MySQL server has gone away at file:/home/wwwroot/dujitang/vendor/topthink/think-orm/src/db/PDOConnection.php line:722][0m
+[41m[2020-01-11 20:25:58][DEBUG][ERROR] : [SQLSTATE[HY000]: General error: 2006 MySQL server has gone away at file:/home/wwwroot/dujitang/vendor/topthink/think-orm/src/db/PDOConnection.php line:722][0m
+[41m[2020-01-11 21:26:01][DEBUG][ERROR] : [SQLSTATE[HY000]: General error: 2006 MySQL server has gone away at file:/home/wwwroot/dujitang/vendor/topthink/think-orm/src/db/PDOConnection.php line:722][0m
+[41m[2020-01-12 03:27:24][DEBUG][ERROR] : [SQLSTATE[HY000]: General error: 2006 MySQL server has gone away at file:/home/wwwroot/dujitang/vendor/topthink/think-orm/src/db/PDOConnection.php line:722][0m
+[41m[2020-01-12 05:54:29][DEBUG][ERROR] : [SQLSTATE[HY000]: General error: 2006 MySQL server has gone away at file:/home/wwwroot/dujitang/vendor/topthink/think-orm/src/db/PDOConnection.php line:722][0m
+[41m[2020-01-12 12:18:18][DEBUG][ERROR] : [SQLSTATE[HY000]: General error: 2006 MySQL server has gone away at file:/home/wwwroot/dujitang/vendor/topthink/think-orm/src/db/PDOConnection.php line:722][0m
+[41m[2020-01-12 13:46:12][DEBUG][ERROR] : [SQLSTATE[HY000]: General error: 2006 MySQL server has gone away at file:/home/wwwroot/dujitang/vendor/topthink/think-orm/src/db/PDOConnection.php line:722][0m
+[41m[2020-01-12 14:17:51][DEBUG][ERROR] : [SQLSTATE[HY000]: General error: 2006 MySQL server has gone away at file:/home/wwwroot/dujitang/vendor/topthink/think-orm/src/db/PDOConnection.php line:722][0m
+[41m[2020-01-12 14:22:11][DEBUG][ERROR] : [SQLSTATE[HY000]: General error: 2006 MySQL server has gone away at file:/home/wwwroot/dujitang/vendor/topthink/think-orm/src/db/PDOConnection.php line:722][0m
+[41m[2020-01-12 14:22:31][DEBUG][ERROR] : [SQLSTATE[HY000]: General error: 2006 MySQL server has gone away at file:/home/wwwroot/dujitang/vendor/topthink/think-orm/src/db/PDOConnection.php line:722][0m
+[41m[2020-01-12 14:22:33][DEBUG][ERROR] : [SQLSTATE[HY000]: General error: 2006 MySQL server has gone away at file:/home/wwwroot/dujitang/vendor/topthink/think-orm/src/db/PDOConnection.php line:722][0m
+[41m[2020-01-12 14:23:59][DEBUG][ERROR] : [SQLSTATE[HY000]: General error: 2006 MySQL server has gone away at file:/home/wwwroot/dujitang/vendor/topthink/think-orm/src/db/PDOConnection.php line:722][0m
+PHP Fatal error:  Cannot declare class App\HttpController\Index, because the name is already in use in /home/wwwroot/dujitang/App/HttpController/Test.php on line 71
+
+Fatal error: Cannot declare class App\HttpController\Index, because the name is already in use in /home/wwwroot/dujitang/App/HttpController/Test.php on line 71
+[41m[2020-01-12 14:25:33][DEBUG][ERROR] : [Cannot declare class App\HttpController\Index, because the name is already in use at file:/home/wwwroot/dujitang/App/HttpController/Test.php line:71][0m
+[2020-01-12 14:25:33 *9652.0]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Cannot declare class App\HttpController\Index, because the name is already in use in /home/wwwroot/dujitang/App/HttpController/Test.php on line 71
+[2020-01-12 14:25:33 $9642.0]	WARNING	swManager_check_exit_status: worker#0[pid=9652] abnormal exit, status=255, signal=0
+[2020-01-12 14:26:07 #9641.1]	INFO	Server is shutdown now
+[43m[2020-01-12 14:26:07][DEBUG][NOTICE] : [Use of undefined constant ROOT - assumed 'ROOT' at file:/home/wwwroot/dujitang/EasySwooleEvent.php line:24][0m
+[2020-01-12 14:33:17 $13223.0]	INFO	Server is reloading task workers now
+[2020-01-12 16:08:14 #13222.1]	INFO	Server is shutdown now
+[43m[2020-01-12 16:08:14][DEBUG][NOTICE] : [Use of undefined constant ROOT - assumed 'ROOT' at file:/home/wwwroot/dujitang/EasySwooleEvent.php line:24][0m
+[2020-01-12 16:08:45 *13412.0]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Class App\HttpController\Base contains 1 abstract method and must therefore be declared abstract or implement the remaining methods (EasySwoole\Http\AbstractInterface\Controller::index) in /home/wwwroot/dujitang/App/HttpController/Base.php on line 8
+[2020-01-12 16:08:45 $13402.0]	WARNING	swManager_check_exit_status: worker#0[pid=13412] abnormal exit, status=255, signal=0
+[2020-01-12 19:16:51 *13721.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Cannot declare class App\HttpController\Index, because the name is already in use in /home/wwwroot/dujitang/App/HttpController/Test.php on line 89
+[2020-01-12 19:16:51 $13710.0]	WARNING	swManager_check_exit_status: worker#1[pid=13721] abnormal exit, status=255, signal=0
+[2020-01-12 19:16:52 *13720.0]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Cannot declare class App\HttpController\Index, because the name is already in use in /home/wwwroot/dujitang/App/HttpController/Test.php on line 89
+[2020-01-12 19:16:52 $13710.0]	WARNING	swManager_check_exit_status: worker#0[pid=13720] abnormal exit, status=255, signal=0
+[2020-01-12 19:16:52 *13915.0]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Cannot declare class App\HttpController\Index, because the name is already in use in /home/wwwroot/dujitang/App/HttpController/Test.php on line 89
+[2020-01-12 19:16:52 $13710.0]	WARNING	swManager_check_exit_status: worker#0[pid=13915] abnormal exit, status=255, signal=0
+[2020-01-12 19:16:57 *13727.7]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Cannot declare class App\HttpController\Index, because the name is already in use in /home/wwwroot/dujitang/App/HttpController/Test.php on line 89
+[2020-01-12 19:16:57 $13710.0]	WARNING	swManager_check_exit_status: worker#7[pid=13727] abnormal exit, status=255, signal=0
+[2020-01-12 19:32:40 *13917.7]	WARNING	swSignalfd_onSignal (ERRNO 707): Unable to find callback function for signal Hangup: 1
+[2020-01-12 19:32:40 *13916.0]	WARNING	swSignalfd_onSignal (ERRNO 707): Unable to find callback function for signal Hangup: 1
+[2020-01-12 19:32:40 *13914.1]	WARNING	swSignalfd_onSignal (ERRNO 707): Unable to find callback function for signal Hangup: 1
+[2020-01-12 19:32:40 *13726.6]	WARNING	swSignalfd_onSignal (ERRNO 707): Unable to find callback function for signal Hangup: 1
+[2020-01-12 19:32:40 *13725.5]	WARNING	swSignalfd_onSignal (ERRNO 707): Unable to find callback function for signal Hangup: 1
+[2020-01-12 19:32:40 *13724.4]	WARNING	swSignalfd_onSignal (ERRNO 707): Unable to find callback function for signal Hangup: 1
+[2020-01-12 19:32:40 *13723.3]	WARNING	swSignalfd_onSignal (ERRNO 707): Unable to find callback function for signal Hangup: 1
+[2020-01-12 19:32:40 *13722.2]	WARNING	swSignalfd_onSignal (ERRNO 707): Unable to find callback function for signal Hangup: 1
+[2020-01-12 19:32:40 ^13719.15]	WARNING	swSignalfd_onSignal (ERRNO 707): Unable to find callback function for signal Hangup: 1
+[2020-01-12 19:32:40 ^13718.14]	WARNING	swSignalfd_onSignal (ERRNO 707): Unable to find callback function for signal Hangup: 1
+[2020-01-12 19:32:40 ^13717.13]	WARNING	swSignalfd_onSignal (ERRNO 707): Unable to find callback function for signal Hangup: 1
+[2020-01-12 19:32:40 ^13716.12]	WARNING	swSignalfd_onSignal (ERRNO 707): Unable to find callback function for signal Hangup: 1
+[2020-01-12 19:32:40 ^13715.11]	WARNING	swSignalfd_onSignal (ERRNO 707): Unable to find callback function for signal Hangup: 1
+[2020-01-12 19:32:40 ^13714.10]	WARNING	swSignalfd_onSignal (ERRNO 707): Unable to find callback function for signal Hangup: 1
+[2020-01-12 19:32:40 ^13713.9]	WARNING	swSignalfd_onSignal (ERRNO 707): Unable to find callback function for signal Hangup: 1
+[2020-01-12 19:32:40 ^13712.8]	WARNING	swSignalfd_onSignal (ERRNO 707): Unable to find callback function for signal Hangup: 1
+[2020-01-12 19:32:40 $13710.0]	WARNING	swSignal_callback (ERRNO 707): Unable to find callback function for signal Hangup: 1
+[2020-01-12 19:32:40 #13709.1]	WARNING	swSignalfd_onSignal (ERRNO 707): Unable to find callback function for signal Hangup: 1
+[2020-01-13 20:22:28 #13709.1]	INFO	Server is shutdown now
+[45m[2020-01-13 20:22:50][DEBUG][WARNING] : [file_get_contents(./App/View/Index/a.html): failed to open stream: No such file or directory at file:/home/wwwroot/dujitang/App/HttpController/Index.php line:18][0m
+[45m[2020-01-13 20:22:54][DEBUG][WARNING] : [file_get_contents(./App/View/Index/a.html): failed to open stream: No such file or directory at file:/home/wwwroot/dujitang/App/HttpController/Index.php line:18][0m
+[2020-01-13 20:23:06 #15938.1]	INFO	Server is shutdown now
+[45m[2020-01-13 20:23:11][DEBUG][WARNING] : [file_get_contents(./App/View/Index/a.html): failed to open stream: No such file or directory at file:/home/wwwroot/dujitang/App/HttpController/Index.php line:18][0m
+[45m[2020-01-13 20:23:12][DEBUG][WARNING] : [file_get_contents(./App/View/Index/a.html): failed to open stream: No such file or directory at file:/home/wwwroot/dujitang/App/HttpController/Index.php line:18][0m
+[2020-01-13 20:23:20 #15960.1]	INFO	Server is shutdown now
+[45m[2020-01-13 20:23:57][DEBUG][WARNING] : [file_get_contents(./App/View/Index/a.html): failed to open stream: No such file or directory at file:/home/wwwroot/dujitang/App/HttpController/Index.php line:18][0m
+[45m[2020-01-13 20:23:58][DEBUG][WARNING] : [file_get_contents(./App/View/Index/a.html): failed to open stream: No such file or directory at file:/home/wwwroot/dujitang/App/HttpController/Index.php line:18][0m
+[45m[2020-01-13 20:23:59][DEBUG][WARNING] : [file_get_contents(./App/View/Index/a.html): failed to open stream: No such file or directory at file:/home/wwwroot/dujitang/App/HttpController/Index.php line:18][0m
+[2020-01-13 20:24:38 #16001.1]	INFO	Server is shutdown now
+[45m[2020-01-13 20:24:51][DEBUG][WARNING] : [file_get_contents(./App/View/Index/a.html): failed to open stream: No such file or directory at file:/home/wwwroot/dujitang/App/HttpController/Index.php line:18][0m
+[45m[2020-01-13 20:24:52][DEBUG][WARNING] : [file_get_contents(./App/View/Index/a.html): failed to open stream: No such file or directory at file:/home/wwwroot/dujitang/App/HttpController/Index.php line:18][0m
+[45m[2020-01-13 20:24:52][DEBUG][WARNING] : [file_get_contents(./App/View/Index/a.html): failed to open stream: No such file or directory at file:/home/wwwroot/dujitang/App/HttpController/Index.php line:18][0m
+[45m[2020-01-13 20:24:53][DEBUG][WARNING] : [file_get_contents(./App/View/Index/a.html): failed to open stream: No such file or directory at file:/home/wwwroot/dujitang/App/HttpController/Index.php line:18][0m
+[45m[2020-01-13 20:26:22][DEBUG][WARNING] : [file_get_contents(./App/View/Index/a.html): failed to open stream: No such file or directory at file:/home/wwwroot/dujitang/App/HttpController/Index.php line:18][0m
+[2020-01-13 20:29:21 #16025.1]	INFO	Server is shutdown now
+[43m[2020-01-14 09:52:31][DEBUG][NOTICE] : [PDO::prepare(): send of 32 bytes failed with errno=32 Broken pipe at file:/home/wwwroot/dujitang/vendor/topthink/think-orm/src/db/PDOConnection.php line:695][0m
+[45m[2020-01-14 09:52:31][DEBUG][WARNING] : [Error while sending STMT_PREPARE packet. PID=16121 at file:/home/wwwroot/dujitang/vendor/topthink/think-orm/src/db/PDOConnection.php line:695][0m
+[41m[2020-01-14 09:52:31][DEBUG][ERROR] : [SQLSTATE[HY000]: General error: 2006 MySQL server has gone away at file:/home/wwwroot/dujitang/vendor/topthink/think-orm/src/db/PDOConnection.php line:722][0m
+[2020-01-14 09:52:31 *16121.0]	WARNING	swSignalfd_onSignal (ERRNO 707): Unable to find callback function for signal Broken pipe: 13
+[41m[2020-01-14 09:52:32][DEBUG][ERROR] : [SQLSTATE[HY000]: General error: 2006 MySQL server has gone away at file:/home/wwwroot/dujitang/vendor/topthink/think-orm/src/db/PDOConnection.php line:722][0m
+[2020-01-14 15:08:31 #16110.1]	INFO	Server is shutdown now
+[43m[2020-01-14 15:08:31][DEBUG][NOTICE] : [Use of undefined constant ROOT - assumed 'ROOT' at file:/home/wwwroot/dujitang/EasySwooleEvent.php line:24][0m
+PHP Fatal error:  Cannot declare class App\HttpController\Index, because the name is already in use in /home/wwwroot/dujitang/App/HttpController/Test.php on line 89
+
+Fatal error: Cannot declare class App\HttpController\Index, because the name is already in use in /home/wwwroot/dujitang/App/HttpController/Test.php on line 89
+[41m[2020-01-15 04:07:22][DEBUG][ERROR] : [Cannot declare class App\HttpController\Index, because the name is already in use at file:/home/wwwroot/dujitang/App/HttpController/Test.php line:89][0m
+[2020-01-15 04:07:22 *15551.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Cannot declare class App\HttpController\Index, because the name is already in use in /home/wwwroot/dujitang/App/HttpController/Test.php on line 89
+[2020-01-15 04:07:22 $15548.0]	WARNING	swManager_check_exit_status: worker#1[pid=15551] abnormal exit, status=255, signal=0
+PHP Fatal error:  Cannot declare class App\HttpController\Index, because the name is already in use in /home/wwwroot/dujitang/App/HttpController/Test.php on line 89
+
+Fatal error: Cannot declare class App\HttpController\Index, because the name is already in use in /home/wwwroot/dujitang/App/HttpController/Test.php on line 89
+[41m[2020-01-15 04:07:22][DEBUG][ERROR] : [Cannot declare class App\HttpController\Index, because the name is already in use at file:/home/wwwroot/dujitang/App/HttpController/Test.php line:89][0m
+[2020-01-15 04:07:22 *22218.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Cannot declare class App\HttpController\Index, because the name is already in use in /home/wwwroot/dujitang/App/HttpController/Test.php on line 89
+[2020-01-15 04:07:22 $15548.0]	WARNING	swManager_check_exit_status: worker#1[pid=22218] abnormal exit, status=255, signal=0
+PHP Fatal error:  Cannot declare class App\HttpController\Index, because the name is already in use in /home/wwwroot/dujitang/App/HttpController/Test.php on line 89
+
+Fatal error: Cannot declare class App\HttpController\Index, because the name is already in use in /home/wwwroot/dujitang/App/HttpController/Test.php on line 89
+[41m[2020-01-15 04:07:22][DEBUG][ERROR] : [Cannot declare class App\HttpController\Index, because the name is already in use at file:/home/wwwroot/dujitang/App/HttpController/Test.php line:89][0m
+[2020-01-15 04:07:22 *15550.0]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Cannot declare class App\HttpController\Index, because the name is already in use in /home/wwwroot/dujitang/App/HttpController/Test.php on line 89
+[2020-01-15 04:07:22 $15548.0]	WARNING	swManager_check_exit_status: worker#0[pid=15550] abnormal exit, status=255, signal=0
+PHP Fatal error:  Cannot declare class App\HttpController\Index, because the name is already in use in /home/wwwroot/dujitang/App/HttpController/Test.php on line 89
+
+Fatal error: Cannot declare class App\HttpController\Index, because the name is already in use in /home/wwwroot/dujitang/App/HttpController/Test.php on line 89
+[41m[2020-01-15 04:07:29][DEBUG][ERROR] : [Cannot declare class App\HttpController\Index, because the name is already in use at file:/home/wwwroot/dujitang/App/HttpController/Test.php line:89][0m
+[2020-01-15 04:07:29 *22220.0]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Cannot declare class App\HttpController\Index, because the name is already in use in /home/wwwroot/dujitang/App/HttpController/Test.php on line 89
+[2020-01-15 04:07:29 $15548.0]	WARNING	swManager_check_exit_status: worker#0[pid=22220] abnormal exit, status=255, signal=0
+[2020-01-15 16:57:08 #15547.1]	INFO	Server is shutdown now
+[43m[2020-01-15 16:57:08][DEBUG][NOTICE] : [Use of undefined constant ROOT - assumed 'ROOT' at file:/home/wwwroot/dujitang/EasySwooleEvent.php line:26][0m
+[43m[2020-01-15 16:57:08][DEBUG][NOTICE] : [Use of undefined constant ROOT - assumed 'ROOT' at file:/home/wwwroot/dujitang/EasySwooleEvent.php line:26][0m
+[43m[2020-01-15 16:57:08][DEBUG][NOTICE] : [Use of undefined constant ROOT - assumed 'ROOT' at file:/home/wwwroot/dujitang/EasySwooleEvent.php line:26][0m
+[43m[2020-01-15 16:57:08][DEBUG][NOTICE] : [Use of undefined constant ROOT - assumed 'ROOT' at file:/home/wwwroot/dujitang/EasySwooleEvent.php line:26][0m
+[43m[2020-01-15 16:57:08][DEBUG][NOTICE] : [Use of undefined constant ROOT - assumed 'ROOT' at file:/home/wwwroot/dujitang/EasySwooleEvent.php line:26][0m
