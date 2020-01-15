@@ -6,6 +6,9 @@
     },
     "require": {
         "easyswoole/easyswoole": "3.x",
-        "easyswoole/orm": "^1.2"
+                "easyswoole/template": "^1.0",
+                "topthink/think-orm": "^2.0",
+                "topthink/think-template": "^2.0",
+                "smarty/smarty": "~3.1"
     }
 }
