@@ -192,3 +192,55 @@ Stack trace:
 [2020-01-15 16:57:08][DEBUG][NOTICE] : [Use of undefined constant ROOT - assumed 'ROOT' at file:/home/wwwroot/dujitang/EasySwooleEvent.php line:26]
 [2020-01-15 16:57:08][DEBUG][NOTICE] : [Use of undefined constant ROOT - assumed 'ROOT' at file:/home/wwwroot/dujitang/EasySwooleEvent.php line:26]
 [2020-01-15 16:57:08][DEBUG][NOTICE] : [Use of undefined constant ROOT - assumed 'ROOT' at file:/home/wwwroot/dujitang/EasySwooleEvent.php line:26]
+[2020-01-15 17:51:00][DEBUG][NOTICE] : [Use of undefined constant ROOT - assumed 'ROOT' at file:/home/wwwroot/dujitang/EasySwooleEvent.php line:26]
+[2020-01-15 17:51:00][DEBUG][NOTICE] : [Use of undefined constant ROOT - assumed 'ROOT' at file:/home/wwwroot/dujitang/EasySwooleEvent.php line:26]
+[2020-01-15 17:51:00][DEBUG][NOTICE] : [Use of undefined constant ROOT - assumed 'ROOT' at file:/home/wwwroot/dujitang/EasySwooleEvent.php line:26]
+[2020-01-15 17:51:00][DEBUG][NOTICE] : [Use of undefined constant ROOT - assumed 'ROOT' at file:/home/wwwroot/dujitang/EasySwooleEvent.php line:26]
+[2020-01-15 17:51:00][DEBUG][NOTICE] : [Use of undefined constant ROOT - assumed 'ROOT' at file:/home/wwwroot/dujitang/EasySwooleEvent.php line:26]
+[2020-01-15 17:51:00][DEBUG][NOTICE] : [Use of undefined constant ROOT - assumed 'ROOT' at file:/home/wwwroot/dujitang/EasySwooleEvent.php line:26]
+[2020-01-15 18:02:34][DEBUG][NOTICE] : [Use of undefined constant ROOT - assumed 'ROOT' at file:/home/wwwroot/dujitang/EasySwooleEvent.php line:26]
+[2020-01-15 18:02:41][DEBUG][NOTICE] : [Use of undefined constant ROOT - assumed 'ROOT' at file:/home/wwwroot/dujitang/EasySwooleEvent.php line:26]
+[2020-01-15 18:02:41][DEBUG][NOTICE] : [Use of undefined constant ROOT - assumed 'ROOT' at file:/home/wwwroot/dujitang/EasySwooleEvent.php line:26]
+[2020-01-15 18:02:41][DEBUG][NOTICE] : [Use of undefined constant ROOT - assumed 'ROOT' at file:/home/wwwroot/dujitang/EasySwooleEvent.php line:26]
+[2020-01-15 18:02:41][DEBUG][NOTICE] : [Use of undefined constant ROOT - assumed 'ROOT' at file:/home/wwwroot/dujitang/EasySwooleEvent.php line:26]
+[2020-01-15 18:02:41][DEBUG][NOTICE] : [Use of undefined constant ROOT - assumed 'ROOT' at file:/home/wwwroot/dujitang/EasySwooleEvent.php line:26]
+[2020-01-15 18:02:41][DEBUG][NOTICE] : [Use of undefined constant ROOT - assumed 'ROOT' at file:/home/wwwroot/dujitang/EasySwooleEvent.php line:26]
+[2020-01-15 18:04:11][DEBUG][ERROR] : [Cannot declare class App\HttpController\Index, because the name is already in use at file:/home/wwwroot/dujitang/App/HttpController/Test.php line:95]
+[2020-01-15 18:08:02][DEBUG][NOTICE] : [Use of undefined constant MEMCACHE_COMPORESSED - assumed 'MEMCACHE_COMPORESSED' at file:/home/wwwroot/dujitang/App/HttpController/Test.php line:97]
+[2020-01-15 18:08:05][DEBUG][NOTICE] : [Use of undefined constant MEMCACHE_COMPORESSED - assumed 'MEMCACHE_COMPORESSED' at file:/home/wwwroot/dujitang/App/HttpController/Test.php line:97]
+[2020-01-15 18:08:06][DEBUG][NOTICE] : [Use of undefined constant MEMCACHE_COMPORESSED - assumed 'MEMCACHE_COMPORESSED' at file:/home/wwwroot/dujitang/App/HttpController/Test.php line:97]
+[2020-01-15 18:23:32][DEBUG][NOTICE] : [Undefined variable: client at file:/home/wwwroot/dujitang/App/Common/Tool/MemcacheHelp.php line:22]
+[2020-01-15 18:23:32][DEBUG][ERROR] : [Call to a member function get() on null at file:/home/wwwroot/dujitang/App/Common/Tool/MemcacheHelp.php line:22]
+[2020-01-16 19:22:07][DEBUG][NOTICE] : [Use of undefined constant ROOT - assumed 'ROOT' at file:/home/wwwroot/dujitang/EasySwooleEvent.php line:26]
+[2020-01-16 19:22:07][DEBUG][NOTICE] : [Use of undefined constant ROOT - assumed 'ROOT' at file:/home/wwwroot/dujitang/EasySwooleEvent.php line:26]
+[2020-01-16 19:22:07][DEBUG][NOTICE] : [Use of undefined constant ROOT - assumed 'ROOT' at file:/home/wwwroot/dujitang/EasySwooleEvent.php line:26]
+[2020-01-16 19:22:07][DEBUG][NOTICE] : [Use of undefined constant ROOT - assumed 'ROOT' at file:/home/wwwroot/dujitang/EasySwooleEvent.php line:26]
+[2020-01-16 19:22:07][DEBUG][NOTICE] : [Use of undefined constant ROOT - assumed 'ROOT' at file:/home/wwwroot/dujitang/EasySwooleEvent.php line:26]
+[2020-01-16 19:22:07][DEBUG][NOTICE] : [Use of undefined constant ROOT - assumed 'ROOT' at file:/home/wwwroot/dujitang/EasySwooleEvent.php line:26]
+[2020-01-16 19:22:16][DEBUG][ERROR] : [Uncaught Error: Call to undefined method EasySwoole\ORM\Db\Config::getInstance() in /home/wwwroot/dujitang/EasySwooleEvent.php:41
+Stack trace:
+#0 /home/wwwroot/dujitang/vendor/easyswoole/easyswoole/src/Core.php(118): EasySwoole\EasySwoole\EasySwooleEvent::mainServerCreate(Object(EasySwoole\EasySwoole\Swoole\EventRegister))
+#1 /home/wwwroot/dujitang/vendor/easyswoole/easyswoole/src/Command/DefaultCommand/Start.php(42): EasySwoole\EasySwoole\Core->createServer()
+#2 /home/wwwroot/dujitang/vendor/easyswoole/easyswoole/src/Command/CommandContainer.php(46): EasySwoole\EasySwoole\Command\DefaultCommand\Start->exec(Array)
+#3 /home/wwwroot/dujitang/vendor/easyswoole/easyswoole/src/Command/CommandRunner.php(54): EasySwoole\EasySwoole\Command\CommandContainer->hook('start', Array)
+#4 /home/wwwroot/dujitang/easyswoole(24): EasySwoole\EasySwoole\Command\CommandRunner->run(Array)
+#5 {main}
+  thrown at file:/home/wwwroot/dujitang/EasySwooleEvent.php line:41]
+[2020-01-16 19:24:23][DEBUG][ERROR] : [Uncaught Error: Call to undefined method EasySwoole\Pool\Config::getInstance() in /home/wwwroot/dujitang/EasySwooleEvent.php:42
+Stack trace:
+#0 /home/wwwroot/dujitang/vendor/easyswoole/easyswoole/src/Core.php(118): EasySwoole\EasySwoole\EasySwooleEvent::mainServerCreate(Object(EasySwoole\EasySwoole\Swoole\EventRegister))
+#1 /home/wwwroot/dujitang/vendor/easyswoole/easyswoole/src/Command/DefaultCommand/Start.php(42): EasySwoole\EasySwoole\Core->createServer()
+#2 /home/wwwroot/dujitang/vendor/easyswoole/easyswoole/src/Command/CommandContainer.php(46): EasySwoole\EasySwoole\Command\DefaultCommand\Start->exec(Array)
+#3 /home/wwwroot/dujitang/vendor/easyswoole/easyswoole/src/Command/CommandRunner.php(54): EasySwoole\EasySwoole\Command\CommandContainer->hook('start', Array)
+#4 /home/wwwroot/dujitang/easyswoole(24): EasySwoole\EasySwoole\Command\CommandRunner->run(Array)
+#5 {main}
+  thrown at file:/home/wwwroot/dujitang/EasySwooleEvent.php line:42]
+[2020-01-16 19:34:56][DEBUG][ERROR] : [connect to redis host 127.0.0.1:6379 fail after retry 4 times at file:/home/wwwroot/dujitang/vendor/easyswoole/redis/src/Redis.php line:2866]
+[2020-01-16 19:36:54][DEBUG][ERROR] : [NOAUTH Authentication required. at file:/home/wwwroot/dujitang/vendor/easyswoole/redis/src/Redis.php line:2884]
+[2020-01-16 19:37:46][DEBUG][ERROR] : [NOAUTH Authentication required. at file:/home/wwwroot/dujitang/vendor/easyswoole/redis/src/Redis.php line:2884]
+[2020-01-16 20:09:12][DEBUG][WARNING] : [strlen() expects parameter 1 to be string, object given at file:/home/wwwroot/dujitang/vendor/easyswoole/redis/src/Client.php line:45]
+[2020-01-16 20:09:12][DEBUG][WARNING] : [Object of class stdClass could not be converted to string at file:/home/wwwroot/dujitang/vendor/easyswoole/redis/src/Client.php line:46]
+[2020-01-16 20:09:16][DEBUG][WARNING] : [strlen() expects parameter 1 to be string, object given at file:/home/wwwroot/dujitang/vendor/easyswoole/redis/src/Client.php line:45]
+[2020-01-16 20:09:16][DEBUG][WARNING] : [Object of class stdClass could not be converted to string at file:/home/wwwroot/dujitang/vendor/easyswoole/redis/src/Client.php line:46]
+[2020-01-16 20:09:21][DEBUG][WARNING] : [strlen() expects parameter 1 to be string, object given at file:/home/wwwroot/dujitang/vendor/easyswoole/redis/src/Client.php line:45]
+[2020-01-16 20:09:21][DEBUG][WARNING] : [Object of class stdClass could not be converted to string at file:/home/wwwroot/dujitang/vendor/easyswoole/redis/src/Client.php line:46]

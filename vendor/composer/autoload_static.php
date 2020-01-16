@@ -43,10 +43,14 @@ class ComposerStaticInitca9a7e55f544e84933e2c843d685e0c9
             'EasySwoole\\Task\\' => 16,
             'EasySwoole\\Spl\\Test\\' => 20,
             'EasySwoole\\Spl\\' => 15,
+            'EasySwoole\\Redis\\' => 17,
+            'EasySwoole\\RedisPool\\' => 21,
             'EasySwoole\\Pool\\' => 16,
             'EasySwoole\\ORM\\' => 15,
             'EasySwoole\\Mysqli\\Tests\\' => 24,
             'EasySwoole\\Mysqli\\' => 18,
+            'EasySwoole\\Memcache\\Tests\\' => 26,
+            'EasySwoole\\Memcache\\' => 20,
             'EasySwoole\\Log\\' => 15,
             'EasySwoole\\Http\\' => 16,
             'EasySwoole\\EasySwoole\\' => 22,
@@ -136,6 +140,14 @@ class ComposerStaticInitca9a7e55f544e84933e2c843d685e0c9
         array (
             0 => __DIR__ . '/..' . '/easyswoole/spl/src',
         ),
+        'EasySwoole\\Redis\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/easyswoole/redis/src',
+        ),
+        'EasySwoole\\RedisPool\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/easyswoole/redis-pool/src',
+        ),
         'EasySwoole\\Pool\\' => 
         array (
             0 => __DIR__ . '/..' . '/easyswoole/pool/src',
@@ -151,6 +163,14 @@ class ComposerStaticInitca9a7e55f544e84933e2c843d685e0c9
         'EasySwoole\\Mysqli\\' => 
         array (
             0 => __DIR__ . '/..' . '/easyswoole/mysqli/src',
+        ),
+        'EasySwoole\\Memcache\\Tests\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/easyswoole/memcache/tests',
+        ),
+        'EasySwoole\\Memcache\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/easyswoole/memcache/src',
         ),
         'EasySwoole\\Log\\' => 
         array (

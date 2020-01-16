@@ -15,6 +15,7 @@ use EasySwoole\Http\Response;
 use EasySwoole\ORM\DbManager;
 use EasySwoole\ORM\Db\Connection;
 use EasySwoole\ORM\Db\Config;
+use EasySwoole\Pool\Config as MemcacheConfig;
 
 class EasySwooleEvent implements Event
 {
@@ -50,6 +51,11 @@ class EasySwooleEvent implements Event
     
     public static function loadDB()
     {
-       
+       //redis连接池注册(config默认为127.0.0.1,端口6379)
+        $redisconfig = ['host' => '127.0.0.1','port' => '6009','auth' => 'Wangsongqing123@','serialize' => \EasySwoole\Redis\Config\RedisConfig::SERIALIZE_NONE];
+        $redisPoolConfig = \EasySwoole\RedisPool\Redis::getInstance()->register('redis',new \EasySwoole\Redis\Config\RedisConfig($redisconfig));
+        //配置连接池连接数
+        $redisPoolConfig->setMinObjectNum(5);
+        $redisPoolConfig->setMaxObjectNum(20);
     }
 }

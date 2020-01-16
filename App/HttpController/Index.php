@@ -24,7 +24,16 @@ class Index extends Controller
     {	
         $list = Soul::create()->select();
         $id =  array_rand(array_column($list, 'id'),1);
-		$data = Soul::create()->get(['id'=>$id]);
+        $key = 'EasySwoole_Soul'.$id;
+        $redis = \EasySwoole\RedisPool\Redis::defer('redis');
+        $data = $redis->get($key);
+        if(empty($data)){
+            $data = Soul::create()->get(['id'=>$id]);
+            $redis->setex($key, 1800, json_encode($data));
+        }else{
+            $data = json_decode($data,true);
+        }
+        
         Soul::create()->update(['hits' => $data['hits'] + 1], ['id' => $id]);
     	$this->writeJson('1',$data,'success');
     }

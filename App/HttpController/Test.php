@@ -7,7 +7,7 @@ use think\facade\Db;
 use EasySwoole\Template\Render;
 use EasySwoole\EasySwoole\ServerManager;
 
-class Index extends Controller
+class Test extends Controller
 {
 	 /**
      * 访问方式：http://www.xmwme.com:9501/index/index
@@ -85,5 +85,22 @@ class Index extends Controller
         }
         return $file;
         // $this->response()->write($file);
+    }
+
+    //redis set
+    public function redisset()
+    {
+        $redis = \EasySwoole\RedisPool\Redis::defer('redis');
+        // $redis->set('a', 'wangsongqing');
+        $redis->setex('a', 10,'wangsongqing123');//有过期时间
+        $this->writeJson('1','ok','success');
+    }
+
+    //redis get
+    public function redisget()
+    {
+        $redis = \EasySwoole\RedisPool\Redis::defer('redis');
+        $data = $redis->get('a');
+        $this->writeJson('1',$data,'success');
     }
 }

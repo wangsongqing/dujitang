@@ -154,3 +154,23 @@ Fatal error: Cannot declare class App\HttpController\Index, because the name is 
 [43m[2020-01-15 16:57:08][DEBUG][NOTICE] : [Use of undefined constant ROOT - assumed 'ROOT' at file:/home/wwwroot/dujitang/EasySwooleEvent.php line:26][0m
 [43m[2020-01-15 16:57:08][DEBUG][NOTICE] : [Use of undefined constant ROOT - assumed 'ROOT' at file:/home/wwwroot/dujitang/EasySwooleEvent.php line:26][0m
 [43m[2020-01-15 16:57:08][DEBUG][NOTICE] : [Use of undefined constant ROOT - assumed 'ROOT' at file:/home/wwwroot/dujitang/EasySwooleEvent.php line:26][0m
+[2020-01-15 17:51:00 #27611.1]	INFO	Server is shutdown now
+[43m[2020-01-15 17:51:00][DEBUG][NOTICE] : [Use of undefined constant ROOT - assumed 'ROOT' at file:/home/wwwroot/dujitang/EasySwooleEvent.php line:26][0m
+[43m[2020-01-15 17:51:00][DEBUG][NOTICE] : [Use of undefined constant ROOT - assumed 'ROOT' at file:/home/wwwroot/dujitang/EasySwooleEvent.php line:26][0m
+[43m[2020-01-15 17:51:00][DEBUG][NOTICE] : [Use of undefined constant ROOT - assumed 'ROOT' at file:/home/wwwroot/dujitang/EasySwooleEvent.php line:26][0m
+[43m[2020-01-15 17:51:00][DEBUG][NOTICE] : [Use of undefined constant ROOT - assumed 'ROOT' at file:/home/wwwroot/dujitang/EasySwooleEvent.php line:26][0m
+[43m[2020-01-15 17:51:00][DEBUG][NOTICE] : [Use of undefined constant ROOT - assumed 'ROOT' at file:/home/wwwroot/dujitang/EasySwooleEvent.php line:26][0m
+[2020-01-15 18:02:41 #27685.1]	INFO	Server is shutdown now
+[43m[2020-01-15 18:02:41][DEBUG][NOTICE] : [Use of undefined constant ROOT - assumed 'ROOT' at file:/home/wwwroot/dujitang/EasySwooleEvent.php line:26][0m
+[43m[2020-01-15 18:02:41][DEBUG][NOTICE] : [Use of undefined constant ROOT - assumed 'ROOT' at file:/home/wwwroot/dujitang/EasySwooleEvent.php line:26][0m
+[43m[2020-01-15 18:02:41][DEBUG][NOTICE] : [Use of undefined constant ROOT - assumed 'ROOT' at file:/home/wwwroot/dujitang/EasySwooleEvent.php line:26][0m
+[43m[2020-01-15 18:02:41][DEBUG][NOTICE] : [Use of undefined constant ROOT - assumed 'ROOT' at file:/home/wwwroot/dujitang/EasySwooleEvent.php line:26][0m
+[43m[2020-01-15 18:02:41][DEBUG][NOTICE] : [Use of undefined constant ROOT - assumed 'ROOT' at file:/home/wwwroot/dujitang/EasySwooleEvent.php line:26][0m
+[2020-01-15 18:04:11 *27867.0]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Cannot declare class App\HttpController\Index, because the name is already in use in /home/wwwroot/dujitang/App/HttpController/Test.php on line 95
+[2020-01-15 18:04:11 $27865.0]	WARNING	swManager_check_exit_status: worker#0[pid=27867] abnormal exit, status=255, signal=0
+[2020-01-16 19:22:07 #28068.1]	INFO	Server is shutdown now
+[43m[2020-01-16 19:22:07][DEBUG][NOTICE] : [Use of undefined constant ROOT - assumed 'ROOT' at file:/home/wwwroot/dujitang/EasySwooleEvent.php line:26][0m
+[43m[2020-01-16 19:22:07][DEBUG][NOTICE] : [Use of undefined constant ROOT - assumed 'ROOT' at file:/home/wwwroot/dujitang/EasySwooleEvent.php line:26][0m
+[43m[2020-01-16 19:22:07][DEBUG][NOTICE] : [Use of undefined constant ROOT - assumed 'ROOT' at file:/home/wwwroot/dujitang/EasySwooleEvent.php line:26][0m
+[43m[2020-01-16 19:22:07][DEBUG][NOTICE] : [Use of undefined constant ROOT - assumed 'ROOT' at file:/home/wwwroot/dujitang/EasySwooleEvent.php line:26][0m
+[43m[2020-01-16 19:22:07][DEBUG][NOTICE] : [Use of undefined constant ROOT - assumed 'ROOT' at file:/home/wwwroot/dujitang/EasySwooleEvent.php line:26][0m
