@@ -30,12 +30,14 @@ class EasySwooleEvent implements Event
 
     public static function mainServerCreate(EventRegister $register)
     {
-        $config = new Config();
-        $config->setDatabase('xm_activity');
-        $config->setUser('root');
-        $config->setPassword('xmw521.');
-        $config->setHost('127.0.0.1');
-        DbManager::getInstance()->addConnection(new Connection($config));//数据库配置初始化
+        // $config = new Config();
+        // $config->setDatabase('xm_activity');
+        // $config->setUser('root');
+        // $config->setPassword('xmw521.');
+        // $config->setHost('127.0.0.1');
+        // DbManager::getInstance()->addConnection(new Connection($config));//数据库配置初始化
+        $config = new \EasySwoole\ORM\Db\Config(Config::getInstance()->getConf('MYSQL'));
+        DbManager::getInstance()->addConnection(new Connection($config));
     }
 
     public static function onRequest(Request $request, Response $response): bool

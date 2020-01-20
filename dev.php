@@ -22,5 +22,14 @@ return [
         ],
     ],
     'TEMP_DIR' => null,
-    'LOG_DIR' => null
+    'LOG_DIR' => null,
+    'MYSQL'  => [
+        'host'          => '127.0.0.1',
+        'port'          => 3306,
+        'user'          => 'root',
+        'password'      => 'xmw521.',
+        'database'      => 'xm_activity',
+        'timeout'       => 5,
+        'charset'       => 'utf8mb4',
+    ]
 ];
