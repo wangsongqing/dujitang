@@ -51,6 +51,7 @@ class Test extends Controller
 
     /**
      * ThinkORM 操作数据库
+     * ThinkORM 存在长时间运行内存溢出，暂时抛弃
      */
     public function sql()
     {
