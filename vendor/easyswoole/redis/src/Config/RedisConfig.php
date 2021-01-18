@@ -11,13 +11,19 @@ class RedisConfig extends SplBean
     public const SERIALIZE_NONE = 0;
     public const SERIALIZE_PHP = 1;
     public const SERIALIZE_JSON = 2;
-    protected $host='127.0.0.1';
+    protected $host = '127.0.0.1';
     protected $port = 6379;
+    protected $unixSocket = null;
     protected $auth;
     protected $timeout = 3.0;
     protected $reconnectTimes = 3;
-    protected $db=null;
+    protected $db = null;
     protected $serialize = self::SERIALIZE_NONE;
+    protected $beforeEvent = null;
+    protected $afterEvent = null;
+
+    protected $packageMaxLength = 1024 * 1024 * 2;
+
 
     /**
      * @return mixed
@@ -130,4 +136,69 @@ class RedisConfig extends SplBean
     {
         $this->db = $db;
     }
+
+    /**
+     * @param callable $beforeEvent
+     */
+    public function onBeforeEvent(callable $beforeEvent): void
+    {
+        $this->beforeEvent = $beforeEvent;
+    }
+
+    /**
+     * @param callable $afterEvent
+     */
+    public function onAfterEvent(callable $afterEvent): void
+    {
+        $this->afterEvent = $afterEvent;
+    }
+
+    /**
+     * @return null
+     */
+    public function getBeforeEvent()
+    {
+        return $this->beforeEvent;
+    }
+
+    /**
+     * @return null
+     */
+    public function getAfterEvent()
+    {
+        return $this->afterEvent;
+    }
+
+    /**
+     * @return null
+     */
+    public function getUnixSocket()
+    {
+        return $this->unixSocket;
+    }
+
+    /**
+     * @param null $unixSocket
+     */
+    public function setUnixSocket($unixSocket): void
+    {
+        $this->unixSocket = $unixSocket;
+    }
+
+    /**
+     * @return float|int
+     */
+    public function getPackageMaxLength()
+    {
+        return $this->packageMaxLength;
+    }
+
+    /**
+     * @param float|int $packageMaxLength
+     */
+    public function setPackageMaxLength($packageMaxLength): void
+    {
+        $this->packageMaxLength = $packageMaxLength;
+    }
+
 }

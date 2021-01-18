@@ -5,7 +5,7 @@ namespace App\HttpController;
 
 use EasySwoole\Http\AbstractInterface\Controller;
 use App\Model\Soul;
-use EasySwoole\Mysqli\QueryBuilder;
+use App\Common\NoSql\PRedis;
 
 class Index extends Controller
 {
@@ -24,14 +24,13 @@ class Index extends Controller
     public function tel()
     {
         try {
-            $list = Soul::create()->select();
+            $list = Soul::create()->all();
             $id =  array_rand(array_column($list, 'id'), 1);
             $key = 'EasySwoole_Soul' . $id;
-            $redis = \EasySwoole\RedisPool\Redis::defer('redis');
-            $data = $redis->get($key);
+            $data = PRedis::get($key);
             if (empty($data)) {
                 $data = Soul::create()->get(['id' => $id]);
-                $redis->setex($key, 1800, json_encode($data));
+                PRedis::setex($key, 1800, json_encode($data));
             } else {
                 $data = json_decode($data, true);
             }

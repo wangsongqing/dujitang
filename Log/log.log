@@ -244,3 +244,111 @@ Stack trace:
 [2020-01-16 20:09:16][DEBUG][WARNING] : [Object of class stdClass could not be converted to string at file:/home/wwwroot/dujitang/vendor/easyswoole/redis/src/Client.php line:46]
 [2020-01-16 20:09:21][DEBUG][WARNING] : [strlen() expects parameter 1 to be string, object given at file:/home/wwwroot/dujitang/vendor/easyswoole/redis/src/Client.php line:45]
 [2020-01-16 20:09:21][DEBUG][WARNING] : [Object of class stdClass could not be converted to string at file:/home/wwwroot/dujitang/vendor/easyswoole/redis/src/Client.php line:46]
+[2020-01-19 22:07:53][DEBUG][ERROR] : [Undefined db config:mysql at file:/home/wwwroot/dujitang/vendor/topthink/think-orm/src/DbManager.php line:278]
+[2020-01-19 22:07:54][DEBUG][ERROR] : [Undefined db config:mysql at file:/home/wwwroot/dujitang/vendor/topthink/think-orm/src/DbManager.php line:278]
+[2020-01-19 22:07:54][DEBUG][ERROR] : [Undefined db config:mysql at file:/home/wwwroot/dujitang/vendor/topthink/think-orm/src/DbManager.php line:278]
+[2020-01-19 22:08:00][DEBUG][ERROR] : [Undefined db config:mysql at file:/home/wwwroot/dujitang/vendor/topthink/think-orm/src/DbManager.php line:278]
+[2020-01-20 14:28:36][DEBUG][NOTICE] : [Use of undefined constant ROOT - assumed 'ROOT' at file:/home/wwwroot/dujitang/EasySwooleEvent.php line:27]
+[2020-01-20 14:28:36][DEBUG][NOTICE] : [Use of undefined constant ROOT - assumed 'ROOT' at file:/home/wwwroot/dujitang/EasySwooleEvent.php line:27]
+[2020-01-20 14:28:36][DEBUG][NOTICE] : [Use of undefined constant ROOT - assumed 'ROOT' at file:/home/wwwroot/dujitang/EasySwooleEvent.php line:27]
+[2020-01-20 14:28:36][DEBUG][NOTICE] : [Use of undefined constant ROOT - assumed 'ROOT' at file:/home/wwwroot/dujitang/EasySwooleEvent.php line:27]
+[2020-01-20 14:28:36][DEBUG][ERROR] : [Uncaught Error: Call to undefined method EasySwoole\ORM\Db\Config::getInstance() in /home/wwwroot/dujitang/EasySwooleEvent.php:39
+Stack trace:
+#0 /home/wwwroot/dujitang/vendor/easyswoole/easyswoole/src/Core.php(118): EasySwoole\EasySwoole\EasySwooleEvent::mainServerCreate(Object(EasySwoole\EasySwoole\Swoole\EventRegister))
+#1 /home/wwwroot/dujitang/vendor/easyswoole/easyswoole/src/Command/DefaultCommand/Restart.php(48): EasySwoole\EasySwoole\Core->createServer()
+#2 /home/wwwroot/dujitang/vendor/easyswoole/easyswoole/src/Command/DefaultCommand/Restart.php(37): EasySwoole\EasySwoole\Command\DefaultCommand\Restart->start()
+#3 /home/wwwroot/dujitang/vendor/easyswoole/easyswoole/src/Command/CommandContainer.php(46): EasySwoole\EasySwoole\Command\DefaultCommand\Restart->exec(Array)
+#4 /home/wwwroot/dujitang/vendor/easyswoole/easyswoole/src/Command/CommandRunner.php(54): EasySwoole\EasySwoole\Command\CommandContainer->hook('restart', Array)
+#5 /home/wwwroot/dujitang/easyswoole(24): EasySwoole\EasySwoole\Command\Comm at file:/home/wwwroot/dujitang/EasySwooleEvent.php line:39]
+[2020-01-20 14:29:47][DEBUG][NOTICE] : [Use of undefined constant ROOT - assumed 'ROOT' at file:/home/wwwroot/dujitang/EasySwooleEvent.php line:27]
+[2020-01-20 14:30:13][DEBUG][NOTICE] : [Use of undefined constant ROOT - assumed 'ROOT' at file:/home/wwwroot/dujitang/EasySwooleEvent.php line:27]
+[2020-01-22 07:16:23][DEBUG][ERROR] : [Undefined db config:mysql at file:/home/wwwroot/dujitang/vendor/topthink/think-orm/src/DbManager.php line:278]
+[2020-01-22 07:16:25][DEBUG][ERROR] : [Undefined db config:mysql at file:/home/wwwroot/dujitang/vendor/topthink/think-orm/src/DbManager.php line:278]
+[2020-01-22 07:16:25][DEBUG][ERROR] : [Undefined db config:mysql at file:/home/wwwroot/dujitang/vendor/topthink/think-orm/src/DbManager.php line:278]
+[2020-01-22 07:16:48][DEBUG][ERROR] : [Undefined db config:mysql at file:/home/wwwroot/dujitang/vendor/topthink/think-orm/src/DbManager.php line:278]
+[2020-01-24 16:14:05][DEBUG][ERROR] : [Undefined db config:mysql at file:/home/wwwroot/dujitang/vendor/topthink/think-orm/src/DbManager.php line:278]
+[2020-01-24 16:14:09][DEBUG][ERROR] : [Undefined db config:mysql at file:/home/wwwroot/dujitang/vendor/topthink/think-orm/src/DbManager.php line:278]
+[2020-01-24 16:14:11][DEBUG][ERROR] : [Undefined db config:mysql at file:/home/wwwroot/dujitang/vendor/topthink/think-orm/src/DbManager.php line:278]
+[2020-01-24 16:14:19][DEBUG][ERROR] : [Undefined db config:mysql at file:/home/wwwroot/dujitang/vendor/topthink/think-orm/src/DbManager.php line:278]
+[2020-01-27 01:11:45][DEBUG][ERROR] : [Undefined db config:mysql at file:/home/wwwroot/dujitang/vendor/topthink/think-orm/src/DbManager.php line:278]
+[2020-01-27 01:11:46][DEBUG][ERROR] : [Undefined db config:mysql at file:/home/wwwroot/dujitang/vendor/topthink/think-orm/src/DbManager.php line:278]
+[2020-01-27 01:11:46][DEBUG][ERROR] : [Undefined db config:mysql at file:/home/wwwroot/dujitang/vendor/topthink/think-orm/src/DbManager.php line:278]
+[2020-01-27 01:11:59][DEBUG][ERROR] : [Undefined db config:mysql at file:/home/wwwroot/dujitang/vendor/topthink/think-orm/src/DbManager.php line:278]
+[2020-01-29 10:16:00][DEBUG][ERROR] : [Undefined db config:mysql at file:/home/wwwroot/dujitang/vendor/topthink/think-orm/src/DbManager.php line:278]
+[2020-05-15 19:07:56][DEBUG][ERROR] : [Undefined db config:mysql at file:/home/wwwroot/dujitang/vendor/topthink/think-orm/src/DbManager.php line:278]
+[2020-05-15 19:07:57][DEBUG][ERROR] : [Undefined db config:mysql at file:/home/wwwroot/dujitang/vendor/topthink/think-orm/src/DbManager.php line:278]
+[2020-05-15 19:07:57][DEBUG][ERROR] : [Undefined db config:mysql at file:/home/wwwroot/dujitang/vendor/topthink/think-orm/src/DbManager.php line:278]
+[2020-05-15 19:08:08][DEBUG][ERROR] : [Undefined db config:mysql at file:/home/wwwroot/dujitang/vendor/topthink/think-orm/src/DbManager.php line:278]
+[2020-05-15 20:52:18][DEBUG][ERROR] : [Undefined db config:mysql at file:/home/wwwroot/dujitang/vendor/topthink/think-orm/src/DbManager.php line:278]
+[2020-05-15 20:52:19][DEBUG][ERROR] : [Undefined db config:mysql at file:/home/wwwroot/dujitang/vendor/topthink/think-orm/src/DbManager.php line:278]
+[2020-05-15 20:52:20][DEBUG][ERROR] : [Undefined db config:mysql at file:/home/wwwroot/dujitang/vendor/topthink/think-orm/src/DbManager.php line:278]
+[2020-05-30 19:15:38][DEBUG][ERROR] : [Undefined db config:mysql at file:/home/wwwroot/dujitang/vendor/topthink/think-orm/src/DbManager.php line:278]
+[2020-05-30 19:15:41][DEBUG][ERROR] : [Undefined db config:mysql at file:/home/wwwroot/dujitang/vendor/topthink/think-orm/src/DbManager.php line:278]
+[2020-05-30 19:15:41][DEBUG][ERROR] : [Undefined db config:mysql at file:/home/wwwroot/dujitang/vendor/topthink/think-orm/src/DbManager.php line:278]
+[2020-05-30 19:16:01][DEBUG][ERROR] : [Undefined db config:mysql at file:/home/wwwroot/dujitang/vendor/topthink/think-orm/src/DbManager.php line:278]
+[2020-06-06 14:09:15][DEBUG][ERROR] : [Undefined db config:mysql at file:/home/wwwroot/dujitang/vendor/topthink/think-orm/src/DbManager.php line:278]
+[2020-06-06 14:09:16][DEBUG][ERROR] : [Undefined db config:mysql at file:/home/wwwroot/dujitang/vendor/topthink/think-orm/src/DbManager.php line:278]
+[2020-06-06 14:09:19][DEBUG][ERROR] : [Undefined db config:mysql at file:/home/wwwroot/dujitang/vendor/topthink/think-orm/src/DbManager.php line:278]
+[2020-06-08 23:14:02][DEBUG][ERROR] : [Undefined db config:mysql at file:/home/wwwroot/dujitang/vendor/topthink/think-orm/src/DbManager.php line:278]
+[2020-06-08 23:14:02][DEBUG][ERROR] : [Undefined db config:mysql at file:/home/wwwroot/dujitang/vendor/topthink/think-orm/src/DbManager.php line:278]
+[2020-06-08 23:14:02][DEBUG][ERROR] : [Undefined db config:mysql at file:/home/wwwroot/dujitang/vendor/topthink/think-orm/src/DbManager.php line:278]
+[2020-06-08 23:14:14][DEBUG][ERROR] : [Undefined db config:mysql at file:/home/wwwroot/dujitang/vendor/topthink/think-orm/src/DbManager.php line:278]
+[2020-06-11 08:07:40][DEBUG][ERROR] : [Undefined db config:mysql at file:/home/wwwroot/dujitang/vendor/topthink/think-orm/src/DbManager.php line:278]
+[2020-06-11 08:07:41][DEBUG][ERROR] : [Undefined db config:mysql at file:/home/wwwroot/dujitang/vendor/topthink/think-orm/src/DbManager.php line:278]
+[2020-06-11 08:07:41][DEBUG][ERROR] : [Undefined db config:mysql at file:/home/wwwroot/dujitang/vendor/topthink/think-orm/src/DbManager.php line:278]
+[2020-06-11 08:07:46][DEBUG][ERROR] : [Undefined db config:mysql at file:/home/wwwroot/dujitang/vendor/topthink/think-orm/src/DbManager.php line:278]
+[2020-06-13 17:08:40][DEBUG][ERROR] : [Undefined db config:mysql at file:/home/wwwroot/dujitang/vendor/topthink/think-orm/src/DbManager.php line:278]
+[2020-06-13 17:08:41][DEBUG][ERROR] : [Undefined db config:mysql at file:/home/wwwroot/dujitang/vendor/topthink/think-orm/src/DbManager.php line:278]
+[2020-06-13 17:08:41][DEBUG][ERROR] : [Undefined db config:mysql at file:/home/wwwroot/dujitang/vendor/topthink/think-orm/src/DbManager.php line:278]
+[2020-06-13 17:08:51][DEBUG][ERROR] : [Undefined db config:mysql at file:/home/wwwroot/dujitang/vendor/topthink/think-orm/src/DbManager.php line:278]
+[2020-06-15 14:30:23][DEBUG][ERROR] : [Uncaught EasySwoole\ORM\Exception\Exception: SQLSTATE[HY000] [2002]  in /home/wwwroot/dujitang/vendor/easyswoole/orm/src/Db/MysqlPool.php:21
+Stack trace:
+#0 /home/wwwroot/dujitang/vendor/easyswoole/pool/src/AbstractPool.php(272): EasySwoole\ORM\Db\MysqlPool->createObject()
+#1 /home/wwwroot/dujitang/vendor/easyswoole/pool/src/AbstractPool.php(230): EasySwoole\Pool\AbstractPool->initObject()
+#2 /home/wwwroot/dujitang/vendor/easyswoole/pool/src/AbstractPool.php(216): EasySwoole\Pool\AbstractPool->keepMin(5)
+#3 {main}
+  thrown at file:/home/wwwroot/dujitang/vendor/easyswoole/orm/src/Db/MysqlPool.php line:21]
+[2020-06-15 14:30:23][DEBUG][ERROR] : [Uncaught EasySwoole\ORM\Exception\Exception: SQLSTATE[HY000] [2002] Connection timed out in /home/wwwroot/dujitang/vendor/easyswoole/orm/src/Db/MysqlPool.php:21
+Stack trace:
+#0 /home/wwwroot/dujitang/vendor/easyswoole/pool/src/AbstractPool.php(272): EasySwoole\ORM\Db\MysqlPool->createObject()
+#1 /home/wwwroot/dujitang/vendor/easyswoole/pool/src/AbstractPool.php(230): EasySwoole\Pool\AbstractPool->initObject()
+#2 /home/wwwroot/dujitang/vendor/easyswoole/pool/src/AbstractPool.php(216): EasySwoole\Pool\AbstractPool->keepMin(5)
+#3 {main}
+  thrown at file:/home/wwwroot/dujitang/vendor/easyswoole/orm/src/Db/MysqlPool.php line:21]
+[2020-06-15 14:30:23][DEBUG][ERROR] : [Uncaught EasySwoole\ORM\Exception\Exception: SQLSTATE[HY000] [2002]  in /home/wwwroot/dujitang/vendor/easyswoole/orm/src/Db/MysqlPool.php:21
+Stack trace:
+#0 /home/wwwroot/dujitang/vendor/easyswoole/pool/src/AbstractPool.php(272): EasySwoole\ORM\Db\MysqlPool->createObject()
+#1 /home/wwwroot/dujitang/vendor/easyswoole/pool/src/AbstractPool.php(230): EasySwoole\Pool\AbstractPool->initObject()
+#2 /home/wwwroot/dujitang/vendor/easyswoole/pool/src/AbstractPool.php(216): EasySwoole\Pool\AbstractPool->keepMin(5)
+#3 {main}
+  thrown at file:/home/wwwroot/dujitang/vendor/easyswoole/orm/src/Db/MysqlPool.php line:21]
+[2020-06-15 14:30:46][DEBUG][ERROR] : [Uncaught EasySwoole\ORM\Exception\Exception: SQLSTATE[HY000] [2002]  in /home/wwwroot/dujitang/vendor/easyswoole/orm/src/Db/MysqlPool.php:21
+Stack trace:
+#0 /home/wwwroot/dujitang/vendor/easyswoole/pool/src/AbstractPool.php(272): EasySwoole\ORM\Db\MysqlPool->createObject()
+#1 /home/wwwroot/dujitang/vendor/easyswoole/pool/src/AbstractPool.php(230): EasySwoole\Pool\AbstractPool->initObject()
+#2 /home/wwwroot/dujitang/vendor/easyswoole/pool/src/AbstractPool.php(216): EasySwoole\Pool\AbstractPool->keepMin(5)
+#3 {main}
+  thrown at file:/home/wwwroot/dujitang/vendor/easyswoole/orm/src/Db/MysqlPool.php line:21]
+[2020-06-15 14:30:46][DEBUG][ERROR] : [Uncaught EasySwoole\ORM\Exception\Exception: SQLSTATE[HY000] [2002]  in /home/wwwroot/dujitang/vendor/easyswoole/orm/src/Db/MysqlPool.php:21
+Stack trace:
+#0 /home/wwwroot/dujitang/vendor/easyswoole/pool/src/AbstractPool.php(272): EasySwoole\ORM\Db\MysqlPool->createObject()
+#1 /home/wwwroot/dujitang/vendor/easyswoole/pool/src/AbstractPool.php(230): EasySwoole\Pool\AbstractPool->initObject()
+#2 /home/wwwroot/dujitang/vendor/easyswoole/pool/src/AbstractPool.php(216): EasySwoole\Pool\AbstractPool->keepMin(5)
+#3 {main}
+  thrown at file:/home/wwwroot/dujitang/vendor/easyswoole/orm/src/Db/MysqlPool.php line:21]
+[2020-06-15 14:30:49][DEBUG][ERROR] : [Uncaught EasySwoole\ORM\Exception\Exception: SQLSTATE[HY000] [2002]  in /home/wwwroot/dujitang/vendor/easyswoole/orm/src/Db/MysqlPool.php:21
+Stack trace:
+#0 /home/wwwroot/dujitang/vendor/easyswoole/pool/src/AbstractPool.php(272): EasySwoole\ORM\Db\MysqlPool->createObject()
+#1 /home/wwwroot/dujitang/vendor/easyswoole/pool/src/AbstractPool.php(230): EasySwoole\Pool\AbstractPool->initObject()
+#2 /home/wwwroot/dujitang/vendor/easyswoole/pool/src/AbstractPool.php(216): EasySwoole\Pool\AbstractPool->keepMin(5)
+#3 {main}
+  thrown at file:/home/wwwroot/dujitang/vendor/easyswoole/orm/src/Db/MysqlPool.php line:21]
+[2020-06-15 14:54:07][DEBUG][ERROR] : [Uncaught Error: Call to undefined method EasySwoole\ORM\Db\Config::getInstance() in /home/wwwroot/dujitang/EasySwooleEvent.php:33
+Stack trace:
+#0 /home/wwwroot/dujitang/vendor/easyswoole/easyswoole/src/Core.php(118): EasySwoole\EasySwoole\EasySwooleEvent::mainServerCreate(Object(EasySwoole\EasySwoole\Swoole\EventRegister))
+#1 /home/wwwroot/dujitang/vendor/easyswoole/easyswoole/src/Command/DefaultCommand/Start.php(42): EasySwoole\EasySwoole\Core->createServer()
+#2 /home/wwwroot/dujitang/vendor/easyswoole/easyswoole/src/Command/CommandContainer.php(46): EasySwoole\EasySwoole\Command\DefaultCommand\Start->exec(Array)
+#3 /home/wwwroot/dujitang/vendor/easyswoole/easyswoole/src/Command/CommandRunner.php(54): EasySwoole\EasySwoole\Command\CommandContainer->hook('start', Array)
+#4 /home/wwwroot/dujitang/easyswoole(24): EasySwoole\EasySwoole\Command\CommandRunner->run(Array)
+#5 {main}
+  thrown at file:/home/wwwroot/dujitang/EasySwooleEvent.php line:33]

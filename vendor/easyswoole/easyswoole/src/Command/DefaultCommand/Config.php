@@ -4,12 +4,13 @@
 namespace EasySwoole\EasySwoole\Command\DefaultCommand;
 
 
+use Co\Scheduler;
+use EasySwoole\EasySwoole\Bridge\Bridge;
+use EasySwoole\EasySwoole\Bridge\BridgeCommand;
+use EasySwoole\EasySwoole\Bridge\Package;
 use EasySwoole\EasySwoole\Command\CommandInterface;
 use EasySwoole\EasySwoole\Command\Utility;
-use EasySwoole\EasySwoole\Config as GlobalConfig;
-use EasySwoole\EasySwoole\Core;
-use EasySwoole\EasySwoole\ServerManager;
-use EasySwoole\EasySwoole\SysConst;
+use EasySwoole\Utility\ArrayToTextTable;
 
 class Config implements CommandInterface
 {
@@ -21,87 +22,92 @@ class Config implements CommandInterface
 
     public function exec(array $args): ?string
     {
-        $response = Utility::easySwooleLog();
-        $mode = 'develop';
-        if (!Core::getInstance()->isDev()) {
-            $mode = 'produce';
+        $ret = '';
+        $run = new Scheduler();
+        $run->add(function () use (&$ret, $args) {
+            $action = array_shift($args);
+            switch ($action) {
+                case 'show':
+                    $key = array_shift($args);
+                    $result = $this->show($key);
+                    break;
+                case 'set':
+                    $key = array_shift($args);
+                    $value = array_shift($args);
+                    $result = $this->set($key, $value);
+                    break;
+                default:
+                    $result = $this->help($args);
+                    break;
+            }
+            $ret = $result;
+        });
+        $run->start();
+        return $ret;
+    }
+
+    protected function show($key)
+    {
+        $package = new Package();
+        $package->setCommand(BridgeCommand::CONFIG_INFO);
+        $package->setArgs(['key' => $key]);
+        $package = Bridge::getInstance()->send($package);
+        if($package->getStatus() == Package::STATUS_SUCCESS){
+            $data = $this->arrayConversion('', $package->getArgs());
+            $data = $this->handelArray($data);
+            return new ArrayToTextTable($data);
+        }else{
+            return $package->getArgs();
         }
-        $conf = GlobalConfig::getInstance();
-        if (in_array("d", $args) || in_array("daemonize", $args)) {
-            $conf->setConf("MAIN_SERVER.SETTING.daemonize", true);
+    }
+
+    protected function set($key, $value)
+    {
+        $package = new Package();
+        $package->setCommand(BridgeCommand::CONFIG_SET);
+        $package->setArgs(['key' => $key, 'value' => $value]);
+        $package = Bridge::getInstance()->send($package);
+        if($package->getStatus() == Package::STATUS_SUCCESS){
+            $data = $this->arrayConversion('', $package->getArgs());
+            $data = $this->handelArray($data);
+            return new ArrayToTextTable($data);
+        }else{
+            return $package->getArgs();
         }
-        //create main Server
-        Core::getInstance()->createServer();
-        $serverType = $conf->getConf('MAIN_SERVER.SERVER_TYPE');
-        switch ($serverType) {
-            case EASYSWOOLE_SERVER:
-            {
-                $serverType = 'SWOOLE_SERVER';
-                break;
-            }
-            case EASYSWOOLE_WEB_SERVER:
-            {
-                $serverType = 'SWOOLE_WEB';
-                break;
-            }
-            case EASYSWOOLE_WEB_SOCKET_SERVER:
-            {
-                $serverType = 'SWOOLE_WEB_SOCKET';
-                break;
-            }
-            case EASYSWOOLE_REDIS_SERVER:
-            {
-                $serverType = 'SWOOLE_REDIS';
-                break;
-            }
-            default:
-            {
-                $serverType = 'UNKNOWN';
-            }
+    }
+
+    protected function handelArray($array)
+    {
+        $temp = [];
+        foreach ($array as $key => $value) {
+            $temp[] = [
+                'key'   => $key,
+                'value' => $value
+            ];
         }
-        $response = $response . Utility::displayItem('main server', $serverType) . "\n";
-        $response = $response . Utility::displayItem('listen address', $conf->getConf('MAIN_SERVER.LISTEN_ADDRESS')) . "\n";
-        $response = $response . Utility::displayItem('listen port', $conf->getConf('MAIN_SERVER.PORT')) . "\n";
-        $list = ServerManager::getInstance()->getSubServerRegister();
-        $index = 1;
-        foreach ($list as $serverName => $item) {
-            if (empty($item['setting'])) {
-                $type = $serverType;
+        return $temp;
+    }
+
+    protected function arrayConversion($key, $array)
+    {
+        $data = [];
+        foreach ($array as $k => $value) {
+            $keyName = empty($key) ? $k : "{$key}.{$k}";
+            if (is_array($value)) {
+                $data = array_merge($data, $this->arrayConversion($keyName, $value));
             } else {
-                $type = $item['type'] % 2 > 0 ? 'SWOOLE_TCP' : 'SWOOLE_UDP';
+                $data[$keyName] = $value;
             }
-            $response = $response . Utility::displayItem("sub server:{$serverName}", "{$type}@{$item['listenAddress']}:{$item['port']}") . "\n";
-            $index++;
         }
-        $ips = swoole_get_local_ip();
-        foreach ($ips as $eth => $val) {
-            $response = $response . Utility::displayItem('ip@' . $eth, $val) . "\n";
-        }
-
-        $data = $conf->getConf('MAIN_SERVER.SETTING');
-        if(empty($data['user'])){
-            $data['user'] = get_current_user();
-        }
-
-        if(!isset($data['daemonize'])){
-            $data['daemonize'] = false;
-        }
-
-        foreach ($data as $key => $datum){
-            $response = $response . Utility::displayItem($key,$datum) . "\n";
-        }
-
-        $response = $response . Utility::displayItem('swoole version', phpversion('swoole')) . "\n";
-        $response = $response . Utility::displayItem('php version', phpversion()) . "\n";
-        $response = $response . Utility::displayItem('easy swoole', SysConst::EASYSWOOLE_VERSION) . "\n";
-        $response = $response . Utility::displayItem('develop/produce', $mode) . "\n";
-        $response = $response . Utility::displayItem('temp dir', EASYSWOOLE_TEMP_DIR) . "\n";
-        $response = $response . Utility::displayItem('log dir', EASYSWOOLE_LOG_DIR) . "\n";
-        return $response;
+        return $data;
     }
 
     public function help(array $args): ?string
     {
-        return  'run php easyswoole version';
+        $logo = Utility::easySwooleLog();
+        return $logo . "
+php easyswoole config show [key][.key]
+php easyswoole config set key value
+";
     }
 }

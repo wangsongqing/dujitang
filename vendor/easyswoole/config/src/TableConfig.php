@@ -11,11 +11,11 @@ class TableConfig extends AbstractConfig
 {
     private $table;
 
-    function __construct()
+    function __construct(int $size = 1024,int $dataSize = 2048)
     {
 
-        $this->table = new Table(1024);
-        $this->table->column('data', Table::TYPE_STRING, 2048);
+        $this->table = new Table($size);
+        $this->table->column('data', Table::TYPE_STRING, $dataSize);
         $this->table->create();
     }
 
@@ -101,5 +101,10 @@ class TableConfig extends AbstractConfig
             $this->table->del($key);
         }
         return true;
+    }
+
+    function storage():Table
+    {
+        return $this->table;
     }
 }

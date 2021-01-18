@@ -1,0 +1,39 @@
+[2020-07-02 17:09:24][debug][error]:[Class 'App\HttpController\Db' not found at file:/home/wwwroot/dujitang/App/HttpController/Test.php line:20]
+[2020-07-02 17:09:26][debug][error]:[Class 'App\HttpController\Db' not found at file:/home/wwwroot/dujitang/App/HttpController/Test.php line:20]
+[2020-07-02 17:09:26][debug][error]:[Class 'App\HttpController\Db' not found at file:/home/wwwroot/dujitang/App/HttpController/Test.php line:20]
+[2020-07-02 17:09:40][debug][error]:[Class 'App\HttpController\Db' not found at file:/home/wwwroot/dujitang/App/HttpController/Test.php line:20]
+[2020-07-05 02:13:12][debug][error]:[Class 'App\HttpController\Db' not found at file:/home/wwwroot/dujitang/App/HttpController/Test.php line:20]
+[2020-07-05 02:13:13][debug][error]:[Class 'App\HttpController\Db' not found at file:/home/wwwroot/dujitang/App/HttpController/Test.php line:20]
+[2020-07-05 02:13:13][debug][error]:[Class 'App\HttpController\Db' not found at file:/home/wwwroot/dujitang/App/HttpController/Test.php line:20]
+[2020-07-07 11:12:06][debug][error]:[Class 'App\HttpController\Db' not found at file:/home/wwwroot/dujitang/App/HttpController/Test.php line:20]
+[2020-07-07 11:12:08][debug][error]:[Class 'App\HttpController\Db' not found at file:/home/wwwroot/dujitang/App/HttpController/Test.php line:20]
+[2020-07-07 11:12:08][debug][error]:[Class 'App\HttpController\Db' not found at file:/home/wwwroot/dujitang/App/HttpController/Test.php line:20]
+[2020-07-07 11:12:21][debug][error]:[Class 'App\HttpController\Db' not found at file:/home/wwwroot/dujitang/App/HttpController/Test.php line:20]
+[2020-07-09 20:10:33][debug][error]:[Class 'App\HttpController\Db' not found at file:/home/wwwroot/dujitang/App/HttpController/Test.php line:20]
+[2020-07-09 20:10:33][debug][error]:[Class 'App\HttpController\Db' not found at file:/home/wwwroot/dujitang/App/HttpController/Test.php line:20]
+[2020-07-09 20:10:33][debug][error]:[Class 'App\HttpController\Db' not found at file:/home/wwwroot/dujitang/App/HttpController/Test.php line:20]
+[2020-07-09 20:10:54][debug][error]:[Class 'App\HttpController\Db' not found at file:/home/wwwroot/dujitang/App/HttpController/Test.php line:20]
+[2020-07-12 05:11:35][debug][error]:[Class 'App\HttpController\Db' not found at file:/home/wwwroot/dujitang/App/HttpController/Test.php line:20]
+[2020-07-12 05:11:36][debug][error]:[Class 'App\HttpController\Db' not found at file:/home/wwwroot/dujitang/App/HttpController/Test.php line:20]
+[2020-07-12 05:11:37][debug][error]:[Class 'App\HttpController\Db' not found at file:/home/wwwroot/dujitang/App/HttpController/Test.php line:20]
+[2020-07-12 05:11:49][debug][error]:[Class 'App\HttpController\Db' not found at file:/home/wwwroot/dujitang/App/HttpController/Test.php line:20]
+[2020-07-12 14:44:51][debug][error]:[Uncaught EasySwoole\Redis\Exception\RedisException: Connection timed out in /home/wwwroot/dujitang/vendor/easyswoole/redis/src/Redis.php:2904
+Stack trace:
+#0 /home/wwwroot/dujitang/vendor/easyswoole/redis/src/Redis.php(270): EasySwoole\Redis\Redis->recv()
+#1 /home/wwwroot/dujitang/vendor/easyswoole/redis/src/Redis.php(220): EasySwoole\Redis\Redis->auth('Wangsongqing123...')
+#2 /home/wwwroot/dujitang/vendor/easyswoole/redis-pool/src/RedisPool.php(29): EasySwoole\Redis\Redis->connect(3)
+#3 [internal function]: EasySwoole\RedisPool\RedisPool->EasySwoole\RedisPool\{closure}(Object(EasySwoole\RedisPool\PoolConfig))
+#4 /home/wwwroot/dujitang/vendor/easyswoole/pool/src/MagicPool.php(21): call_user_func(Object(Closure), Object(EasySwoole\RedisPool\PoolConfig))
+#5 /home/wwwroot/dujitang/vendor/easyswoole/pool/src/AbstractPool.php(295): EasySwoole\Pool\MagicPool->createObject()
+#6 /home/wwwroot/dujitang/vendor/easyswoole/pool/src/AbstractPool.php(253): EasySwoole\Pool\AbstractPool->initObject()
+#7 /home/wwwroot/dujitan at file:/home/wwwroot/dujitang/vendor/easyswoole/redis/src/Redis.php line:2904]
+[2020-07-12 14:44:56][debug][error]:[Uncaught EasySwoole\ORM\Exception\Exception: SQLSTATE[HY000] [2002]  in /home/wwwroot/dujitang/vendor/easyswoole/orm/src/Db/MysqlPool.php:22
+Stack trace:
+#0 /home/wwwroot/dujitang/vendor/easyswoole/pool/src/AbstractPool.php(295): EasySwoole\ORM\Db\MysqlPool->createObject()
+#1 /home/wwwroot/dujitang/vendor/easyswoole/pool/src/AbstractPool.php(253): EasySwoole\Pool\AbstractPool->initObject()
+#2 /home/wwwroot/dujitang/vendor/easyswoole/pool/src/AbstractPool.php(227): EasySwoole\Pool\AbstractPool->keepMin(5)
+#3 {main}
+  thrown at file:/home/wwwroot/dujitang/vendor/easyswoole/orm/src/Db/MysqlPool.php line:22]
+[2020-07-16 23:10:03][debug][error]:[Class 'App\HttpController\Db' not found at file:/home/wwwroot/dujitang/App/HttpController/Test.php line:20]
+[2020-07-16 23:10:05][debug][error]:[Class 'App\HttpController\Db' not found at file:/home/wwwroot/dujitang/App/HttpController/Test.php line:20]
+[2020-07-16 23:10:05][debug][error]:[Class 'App\HttpController\Db' not found at file:/home/wwwroot/dujitang/App/HttpController/Test.php line:20]

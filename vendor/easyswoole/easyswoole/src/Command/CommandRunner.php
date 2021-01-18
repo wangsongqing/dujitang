@@ -10,14 +10,18 @@ namespace EasySwoole\EasySwoole\Command;
 
 
 use EasySwoole\Component\Singleton;
+use EasySwoole\EasySwoole\Command\DefaultCommand\Crontab;
 use EasySwoole\EasySwoole\Command\DefaultCommand\Help;
 use EasySwoole\EasySwoole\Command\DefaultCommand\Install;
 use EasySwoole\EasySwoole\Command\DefaultCommand\PhpUnit;
+use EasySwoole\EasySwoole\Command\DefaultCommand\Process;
 use EasySwoole\EasySwoole\Command\DefaultCommand\Reload;
 use EasySwoole\EasySwoole\Command\DefaultCommand\Restart;
 use EasySwoole\EasySwoole\Command\DefaultCommand\Start;
+use EasySwoole\EasySwoole\Command\DefaultCommand\Status;
 use EasySwoole\EasySwoole\Command\DefaultCommand\Stop;
 use EasySwoole\EasySwoole\Command\DefaultCommand\Config;
+use EasySwoole\EasySwoole\Command\DefaultCommand\Task;
 use EasySwoole\EasySwoole\Core;
 
 class CommandRunner
@@ -34,6 +38,10 @@ class CommandRunner
         CommandContainer::getInstance()->set(new PhpUnit());
         CommandContainer::getInstance()->set(new Restart());
         CommandContainer::getInstance()->set(new Config());
+        CommandContainer::getInstance()->set(new Process());
+        CommandContainer::getInstance()->set(new Status());
+        CommandContainer::getInstance()->set(new Task());
+        CommandContainer::getInstance()->set(new Crontab());
     }
 
     function run(array $args):?string

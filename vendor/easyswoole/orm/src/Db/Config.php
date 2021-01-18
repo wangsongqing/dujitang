@@ -11,11 +11,13 @@ class Config extends \EasySwoole\Pool\Config
     protected $password;
     protected $database;
     protected $port = 3306;
-    protected $timeout = 30;
+    protected $timeout = 45;
     protected $charset = 'utf8';
+    protected $autoPing = 5;
 
     protected $strict_type = false; // 开启严格模式，返回的字段将自动转为数字类型
     protected $fetch_mode = false;
+    protected $returnCollection = false; // 返回结果为结果集
 
     /**
      * @return mixed
@@ -27,10 +29,18 @@ class Config extends \EasySwoole\Pool\Config
 
     /**
      * @param mixed $host
+     * @return Config
      */
-    public function setHost($host): void
+    public function setHost($host): Config
     {
-        $this->host = $host;
+        $index = strpos($host, ':');
+        if($index === false){
+            $this->host = $host;
+        }else{
+            $this->host = substr($host, 0, $index);
+            $this->port = intval(substr($host, $index + 1));
+        }
+        return $this;        
     }
 
     /**
@@ -43,10 +53,12 @@ class Config extends \EasySwoole\Pool\Config
 
     /**
      * @param mixed $user
+     * @return Config
      */
-    public function setUser($user): void
+    public function setUser($user): Config
     {
         $this->user = $user;
+        return $this;
     }
 
     /**
@@ -59,10 +71,12 @@ class Config extends \EasySwoole\Pool\Config
 
     /**
      * @param mixed $password
+     * @return Config
      */
-    public function setPassword($password): void
+    public function setPassword($password): Config
     {
         $this->password = $password;
+        return $this;
     }
 
     /**
@@ -75,10 +89,12 @@ class Config extends \EasySwoole\Pool\Config
 
     /**
      * @param mixed $database
+     * @return Config
      */
-    public function setDatabase($database): void
+    public function setDatabase($database): Config
     {
         $this->database = $database;
+        return $this;
     }
 
     /**
@@ -91,10 +107,12 @@ class Config extends \EasySwoole\Pool\Config
 
     /**
      * @param int $port
+     * @return Config
      */
-    public function setPort(int $port): void
+    public function setPort(int $port): Config
     {
         $this->port = $port;
+        return $this;
     }
 
     /**
@@ -107,10 +125,12 @@ class Config extends \EasySwoole\Pool\Config
 
     /**
      * @param int $timeout
+     * @return Config
      */
-    public function setTimeout(int $timeout): void
+    public function setTimeout(int $timeout): Config
     {
         $this->timeout = $timeout;
+        return $this;
     }
 
     /**
@@ -123,10 +143,28 @@ class Config extends \EasySwoole\Pool\Config
 
     /**
      * @param string $charset
+     * @return Config
      */
-    public function setCharset(string $charset): void
+    public function setCharset(string $charset): Config
     {
         $this->charset = $charset;
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getAutoPing(): int
+    {
+        return $this->autoPing;
+    }
+
+    /**
+     * @param int $autoPing
+     */
+    public function setAutoPing(int $autoPing): void
+    {
+        $this->autoPing = $autoPing;
     }
 
     /**
@@ -139,10 +177,12 @@ class Config extends \EasySwoole\Pool\Config
 
     /**
      * @param bool $strict_type
+     * @return Config
      */
-    public function setStrictType(bool $strict_type): void
+    public function setStrictType(bool $strict_type): Config
     {
         $this->strict_type = $strict_type;
+        return $this;
     }
 
     /**
@@ -155,9 +195,28 @@ class Config extends \EasySwoole\Pool\Config
 
     /**
      * @param bool $fetch_mode
+     * @return Config
      */
-    public function setFetchMode(bool $fetch_mode): void
+    public function setFetchMode(bool $fetch_mode): Config
     {
         $this->fetch_mode = $fetch_mode;
+        return $this;
     }
+
+    /**
+     * @return bool
+     */
+    public function isReturnCollection(): bool
+    {
+        return $this->returnCollection;
+    }
+
+    /**
+     * @param bool $returnCollection
+     */
+    public function setReturnCollection(bool $returnCollection): void
+    {
+        $this->returnCollection = $returnCollection;
+    }
+
 }

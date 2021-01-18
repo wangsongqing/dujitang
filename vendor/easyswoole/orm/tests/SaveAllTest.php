@@ -1,6 +1,6 @@
 <?php
 /**
- * Created by PhpStorm.
+ * 批量插入、更新
  * User: Siam
  * Date: 2019/12/5
  * Time: 17:22
@@ -14,6 +14,10 @@ use EasySwoole\ORM\Db\Config;
 use EasySwoole\ORM\Db\Connection;
 use EasySwoole\ORM\DbManager;
 use PHPUnit\Framework\TestCase;
+
+
+
+use EasySwoole\ORM\Tests\models\TestUserListModel;
 
 class SaveAllTest extends TestCase
 {
@@ -147,7 +151,7 @@ class SaveAllTest extends TestCase
             $res = TestUserListModel::create()->connection('siam')->saveAll($data, FALSE);
         } catch (Exception $e) {
         } catch (\EasySwoole\ORM\Exception\Exception $e) {
-            $this->assertEquals($e->getMessage(), "SQLSTATE[23000] [1062] Duplicate entry '{$ids[0]}' for key 'PRIMARY'");
+            $this->assertNotFalse(strpos($e->getMessage(),"SQLSTATE[23000] [1062] Duplicate entry '{$ids[0]}' for key 'PRIMARY'" ));
         } catch (\Throwable $e) {
         }
     }

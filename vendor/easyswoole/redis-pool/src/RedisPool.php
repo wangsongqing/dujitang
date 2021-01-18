@@ -16,9 +16,12 @@ use EasySwoole\Redis\RedisCluster;
 
 class RedisPool extends MagicPool
 {
-    function __construct(RedisConfig $redisConfig)
+    function __construct(RedisConfig $redisConfig,?string $cask = null)
     {
-        parent::__construct(function ()use($redisConfig){
+        parent::__construct(function ()use($redisConfig,$cask){
+            if($cask){
+                return new $cask($redisConfig);
+            }
             if ($redisConfig instanceof RedisClusterConfig){
                 $redis = new RedisCluster($redisConfig);
             }else{
@@ -26,6 +29,32 @@ class RedisPool extends MagicPool
                 $redis->connect($redisConfig->getTimeout());
             }
             return $redis;
-        });
+        },new PoolConfig());
+    }
+
+
+    /**
+     * @param Redis $redis
+     * @return bool
+     */
+    public function itemIntervalCheck($redis): bool
+    {
+        /*
+         * 如果最后一次使用时间超过autoPing间隔
+         */
+        if($this->getConfig()->getAutoPing() > 0 && (time() - $redis->__lastUseTime > $this->getConfig()->getAutoPing())){
+            try{
+                //执行一个ping
+                $redis->ping();
+                //标记使用时间，避免被再次gc
+                $redis->__lastUseTime = time();
+                return true;
+            }catch (\Throwable $throwable){
+                //异常说明该链接出错了，return 进行回收
+                return false;
+            }
+        }else{
+            return true;
+        }
     }
 }

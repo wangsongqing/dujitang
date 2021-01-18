@@ -481,7 +481,7 @@ class RedisTest extends TestCase
         $redis->del($key);
         $data = $redis->setNx($key, 1);
         $this->assertEquals(1, $data);
-
+        $this->assertEquals(1, $redis->get($key));
 
         $redis->del($field[0]);
         $data = $redis->mSetNx([
@@ -1782,11 +1782,11 @@ class RedisTest extends TestCase
         $data = $redis->save();
         $this->assertEquals(1, $data);
 
-//        $data = $redis->clientKill($data[0]['addr']);
-//        $this->assertTrue($data);
-//        $data = $redis->slowLog('get', 'a');
-//        var_dump($data,$redis->getErrorMsg());
-//        $this->assertTrue(!!$data);
+        $data = $redis->clientKill($data[0]['addr']);
+        $this->assertTrue($data);
+        $data = $redis->slowLog('get', 'a');
+        var_dump($data,$redis->getErrorMsg());
+        $this->assertTrue(!!$data);
 
     }
 
@@ -1813,6 +1813,7 @@ class RedisTest extends TestCase
         $data = $redis->geoAdd($key, [
             ['118.6197800000', '24.88869', 'user5',],
         ]);
+
         $data = $redis->geoDist($key, 'user1', 'user2');
         $this->assertGreaterThan(10, $data);
 

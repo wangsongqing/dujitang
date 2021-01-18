@@ -46,4 +46,9 @@ class SplArrayConfig extends AbstractConfig
         $this->load([]);
         return true;
     }
+
+    function storage():SplArray
+    {
+        return $this->splArray;
+    }
 }

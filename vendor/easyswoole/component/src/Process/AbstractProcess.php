@@ -48,6 +48,7 @@ abstract class AbstractProcess
             $this->config->setEnableCoroutine($enableCoroutine);
         }
         $this->swooleProcess = new Process([$this,'__start'],$this->config->isRedirectStdinStdout(),$this->config->getPipeType(),$this->config->isEnableCoroutine());
+        Manager::getInstance()->__addProcessResource($this);
     }
 
     public function getProcess():Process
@@ -86,6 +87,18 @@ abstract class AbstractProcess
 
     function __start(Process $process)
     {
+        $table = Manager::getInstance()->getProcessTable();
+        $table->set($process->pid,[
+            'pid'=>$process->pid,
+            'name'=>$this->config->getProcessName(),
+            'group'=>$this->config->getProcessGroup()
+        ]);
+        \Swoole\Timer::tick(1*1000,function ()use($table,$process){
+            $table->set($process->pid,[
+                'memoryUsage'=>memory_get_usage(),
+                'memoryPeakUsage'=>memory_get_peak_usage(true)
+            ]);
+        });
         /*
          * swoole自定义进程协程与非协程的兼容
          * 开一个协程，让进程推出的时候，执行清理reactor
@@ -104,6 +117,7 @@ abstract class AbstractProcess
             }
         });
         Process::signal(SIGTERM,function ()use($process){
+            $this->onSigTerm();
             swoole_event_del($process->pipe);
             /*
              * 清除全部定时器
@@ -112,14 +126,23 @@ abstract class AbstractProcess
             Process::signal(SIGTERM, null);
             Event::exit();
         });
-        register_shutdown_function(function () {
+        register_shutdown_function(function ()use($table,$process) {
+            if($table){
+                $table->del($process->pid);
+            }
             $schedule = new Scheduler();
             $schedule->add(function (){
-                try{
-                    $this->onShutDown();
-                }catch (\Throwable $throwable){
-                    $this->onException($throwable);
-                }
+                $channel = new Coroutine\Channel(1);
+                go(function ()use($channel){
+                    try{
+                        $this->onShutDown();
+                    }catch (\Throwable $throwable){
+                        $this->onException($throwable);
+                    }
+                    $channel->push(1);
+                });
+                $channel->pop($this->config->getMaxExitWaitTime());
+                Event::exit();
                 \Swoole\Timer::clearAll();
             });
             $schedule->start();
@@ -142,7 +165,7 @@ abstract class AbstractProcess
         return $this->config->getProcessName();
     }
 
-    protected function getConfig():Config
+    public function getConfig():Config
     {
         return $this->config;
     }
@@ -154,6 +177,11 @@ abstract class AbstractProcess
     protected abstract function run($arg);
 
     protected function onShutDown()
+    {
+
+    }
+
+    protected function onSigTerm()
     {
 
     }

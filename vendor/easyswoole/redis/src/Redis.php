@@ -12,7 +12,7 @@ use EasySwoole\Redis\CommandHandel\BLPop;
 use EasySwoole\Redis\CommandHandel\BRPop;
 use EasySwoole\Redis\CommandHandel\BRPopLPush;
 use EasySwoole\Redis\CommandHandel\ClientGetName;
-use EasySwoole\Redis\CommandHandel\ClusterNodes;
+use EasySwoole\Redis\CommandHandel\ClientKill;
 use EasySwoole\Redis\CommandHandel\ClientList;
 use EasySwoole\Redis\CommandHandel\ClientPause;
 use EasySwoole\Redis\CommandHandel\ClientSetName;
@@ -212,7 +212,7 @@ class Redis
             $timeout = $this->config->getTimeout();
         }
         if ($this->client == null) {
-            $this->client = new Client($this->config->getHost(), $this->config->getPort());
+            $this->initClient();
         }
         $this->isConnected = $this->client->connect($timeout);
 
@@ -222,11 +222,20 @@ class Redis
                 throw new RedisException("auth to redis host {$this->config->getHost()}:{$this->config->getPort()} fail");
             }
         }
-        if ($this->config->getDb()!==null){
+        if ($this->isConnected && $this->config->getDb() !== null) {
             $this->select($this->config->getDb());
         }
 
         return $this->isConnected;
+    }
+
+    function initClient()
+    {
+        if ($this->config->getUnixSocket() !== null) {
+            $this->client = new UnitSocketClient($this->config->getUnixSocket(),$this->config->getPackageMaxLength());
+        } else {
+            $this->client = new Client($this->config->getHost(), $this->config->getPort(),$this->config->getPackageMaxLength());
+        }
     }
 
     function disconnect()
@@ -545,9 +554,9 @@ class Redis
 
     /**
      * set
-     * @param     $key
-     * @param     $val
-     * @param int|string|array $timeout  $timeout [optional]
+     * @param                  $key
+     * @param                  $val
+     * @param int|string|array $timeout $timeout [optional]
      * $timeout = 10
      * $timeout = 'XX',timeout='NX'
      * ['NX','EX'=>10],['XX','PX'=>10]
@@ -556,7 +565,7 @@ class Redis
      * @author Tioncico
      * Time: 14:33
      */
-    public function set($key, $val, $timeout = 0):?bool
+    public function set($key, $val, $timeout = 0): ?bool
     {
         $handelClass = new Set($this);
         $command = $handelClass->getCommand($key, $val, $timeout);
@@ -856,7 +865,7 @@ class Redis
         return $handelClass->getData($recv);
     }
 
-    public function scan(&$cursor, $pattern=null, $count=null)
+    public function scan(&$cursor, $pattern = null, $count = null)
     {
         $handelClass = new Scan($this);
         $command = $handelClass->getCommand($cursor, $pattern, $count);
@@ -867,7 +876,7 @@ class Redis
         if ($recv === null) {
             return false;
         }
-        $data  = $handelClass->getData($recv);
+        $data = $handelClass->getData($recv);
         $cursor = $data[0];
 
         return $data[1];
@@ -1073,10 +1082,10 @@ class Redis
         return $handelClass->getData($recv);
     }
 
-    public function hScan($key,&$cursor, $pattern=null, $count=null)
+    public function hScan($key, &$cursor, $pattern = null, $count = null)
     {
         $handelClass = new HScan($this);
-        $command = $handelClass->getCommand($key,$cursor, $pattern, $count);
+        $command = $handelClass->getCommand($key, $cursor, $pattern, $count);
         if (!$this->sendCommand($command)) {
             return false;
         }
@@ -1084,16 +1093,16 @@ class Redis
         if ($recv === null) {
             return false;
         }
-        $data  = $handelClass->getData($recv);
+        $data = $handelClass->getData($recv);
         $cursor = $data[0];
         return $data[1];
-   }
+    }
 
     ######################hash操作方法######################
 
     ######################列表操作方法######################
 
-    public function bLPop( $keys, $timeout)
+    public function bLPop($keys, $timeout)
     {
         $handelClass = new BLPop($this);
         $command = $handelClass->getCommand($keys, $timeout);
@@ -1559,10 +1568,10 @@ class Redis
         return $handelClass->getData($recv);
     }
 
-    public function sScan($key,&$cursor, $pattern=null, $count=null)
+    public function sScan($key, &$cursor, $pattern = null, $count = null)
     {
         $handelClass = new SScan($this);
-        $command = $handelClass->getCommand($key,$cursor, $pattern, $count);
+        $command = $handelClass->getCommand($key, $cursor, $pattern, $count);
         if (!$this->sendCommand($command)) {
             return false;
         }
@@ -1570,7 +1579,7 @@ class Redis
         if ($recv === null) {
             return false;
         }
-        $data  = $handelClass->getData($recv);
+        $data = $handelClass->getData($recv);
         $cursor = $data[0];
         return $data[1];
     }
@@ -1858,7 +1867,8 @@ class Redis
         if ($recv === null) {
             return false;
         }
-        return $handelClass->getData($recv);
+        $result = $handelClass->getData($recv);
+        return $result;
     }
 
     public function zUnionStore($destination, array $keys, array $weights = [], $aggregate = 'SUM')
@@ -1876,10 +1886,10 @@ class Redis
         return $handelClass->getData($recv);
     }
 
-    public function zScan($key,&$cursor, $pattern=null, $count=null)
+    public function zScan($key, &$cursor, $pattern = null, $count = null)
     {
         $handelClass = new ZScan($this);
-        $command = $handelClass->getCommand($key,$cursor, $pattern, $count);
+        $command = $handelClass->getCommand($key, $cursor, $pattern, $count);
         if (!$this->sendCommand($command)) {
             return false;
         }
@@ -1887,7 +1897,7 @@ class Redis
         if ($recv === null) {
             return false;
         }
-        $data  = $handelClass->getData($recv);
+        $data = $handelClass->getData($recv);
         $cursor = $data[0];
         return $data[1];
     }
@@ -2171,6 +2181,10 @@ class Redis
 
     public function startPipe(): bool
     {
+        //由于执行管道之后,connect方法也会被拦截,导致没有client执行数据,所以这边先连接一次
+        if ($this->connect() === false) {
+            throw new RedisException("redis connect error");
+        }
         $handelClass = new StartPipe($this);
         //模拟命令,不实际执行
         $handelClass->getCommand();
@@ -2321,7 +2335,7 @@ class Redis
 
     public function clientKill($data): bool
     {
-        $handelClass = new ClusterNodes($this);
+        $handelClass = new ClientKill($this);
         $command = $handelClass->getCommand($data);
 
         if (!$this->sendCommand($command)) {
@@ -2744,7 +2758,7 @@ class Redis
     /**
      * geoAdd
      * @param $key
-     * @param $locationData[[longitude=>'',latitude=>'',name=>''],[longitude=>'',latitude=>'',name=>'']] or $locationData[[longitude,latitude,name],[longitude,latitude,name],]
+     * @param $locationData [[longitude=>'',latitude=>'',name=>''],[longitude=>'',latitude=>'',name=>'']] or $locationData[[longitude,latitude,name],[longitude,latitude,name],]
      * @return bool|string
      * @throws RedisException
      * @author Tioncico
@@ -2753,7 +2767,7 @@ class Redis
     public function geoAdd($key, $locationData)
     {
         $handelClass = new GeoAdd($this);
-        $command = $handelClass->getCommand($key,$locationData);
+        $command = $handelClass->getCommand($key, $locationData);
 
         if (!$this->sendCommand($command)) {
             return false;
@@ -2877,21 +2891,23 @@ class Redis
         }
         $recv = $this->client->recv($timeout ?? $this->config->getTimeout());
         if ($recv->getStatus() == $recv::STATUS_ERR) {
-            $this->errorType = $recv->getErrorType();
-            $this->errorMsg = $recv->getMsg();
-            //未登录
-            if ($this->errorType == 'NOAUTH') {
-                throw new RedisException($recv->getMsg());
-            }
+            //redis错误,直接报错
+            $this->setErrorType($recv->getErrorType());
+            $this->setErrorMsg($recv->getMsg());
+            throw new RedisException($recv->getMsg());
         } elseif ($recv->getStatus() == $recv::STATUS_OK) {
             return $recv;
         } elseif ($recv->getStatus() == $recv::STATUS_TIMEOUT) {
+            $this->setErrorType($recv->getErrorType());
+            $this->setErrorMsg($recv->getMsg());
             $this->disconnect();
+            throw new RedisException($recv->getMsg());
         }
         return null;
     }
 
-    public function rawCommand(array $command){
+    public function rawCommand(array $command)
+    {
         if (!$this->sendCommand($command)) {
             return false;
         }

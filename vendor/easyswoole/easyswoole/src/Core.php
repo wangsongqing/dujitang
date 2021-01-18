@@ -10,8 +10,12 @@ namespace EasySwoole\EasySwoole;
 
 
 use EasySwoole\Component\Di;
+use EasySwoole\Component\Process\AbstractProcess;
+use EasySwoole\Component\Process\Manager;
 use EasySwoole\Component\Singleton;
+use EasySwoole\Component\TableManager;
 use EasySwoole\EasySwoole\AbstractInterface\Event;
+use EasySwoole\EasySwoole\Bridge\Bridge;
 use EasySwoole\EasySwoole\Crontab\Crontab;
 use EasySwoole\EasySwoole\Swoole\EventHelper;
 use EasySwoole\EasySwoole\Swoole\EventRegister;
@@ -27,7 +31,11 @@ use EasySwoole\Utility\File;
 use EasySwoole\Log\Logger as DefaultLogger;
 use EasySwoole\Trigger\Trigger as DefaultTrigger;
 use EasySwoole\Task\Config as TaskConfig;
+use Swoole\Server;
 use Swoole\Timer;
+use Swoole\Http\Request as SwooleRequest;
+use Swoole\Http\Response  as SwooleResponse;
+use Swoole\Event as SwooleEvent;
 
 ////////////////////////////////////////////////////////////////////
 //                          _ooOoo_                               //
@@ -87,7 +95,7 @@ class Core
             try{
                 $ref = new \ReflectionClass('EasySwoole\EasySwoole\EasySwooleEvent');
                 if(!$ref->implementsInterface(Event::class)){
-                    die('global file for EasySwooleEvent is not compatible for EasySwoole\EasySwoole\EasySwooleEvent');
+                    die('global file for EasySwooleEvent is not compatible for EasySwoole\EasySwoole\AbstractInterface\Event');
                 }
                 unset($ref);
             }catch (\Throwable $throwable){
@@ -98,12 +106,17 @@ class Core
         }
         //先加载配置文件
         $this->loadEnv();
-        //执行框架初始化事件
-        EasySwooleEvent::initialize();
         //临时文件和Log目录初始化
         $this->sysDirectoryInit();
         //注册错误回调
         $this->registerErrorHandler();
+        return $this;
+    }
+
+    function globalInitialize():Core
+    {
+        //执行全局初始化事件
+        EasySwooleEvent::initialize();
         return $this;
     }
 
@@ -113,9 +126,12 @@ class Core
         ServerManager::getInstance()->createSwooleServer(
             $conf['PORT'],$conf['SERVER_TYPE'],$conf['LISTEN_ADDRESS'],$conf['SETTING'],$conf['RUN_MODEL'],$conf['SOCK_TYPE']
         );
-        $this->registerDefaultCallBack(ServerManager::getInstance()->getSwooleServer(),$conf['SERVER_TYPE']);
         //hook 全局的mainServerCreate事件
-        EasySwooleEvent::mainServerCreate(ServerManager::getInstance()->getMainEventRegister());
+        $ret = EasySwooleEvent::mainServerCreate(ServerManager::getInstance()->getMainEventRegister());
+        //如果返回false,说明用户希望接管全部事件
+        if($ret !== false){
+            $this->registerDefaultCallBack(ServerManager::getInstance()->getSwooleServer(),$conf['SERVER_TYPE']);
+        }
         $this->extraHandler();
         return $this;
     }
@@ -246,7 +262,7 @@ class Core
             }
             $dispatcher->setHttpExceptionHandler($httpExceptionHandler);
 
-            EventHelper::on($server,EventRegister::onRequest,function (\swoole_http_request $request,\swoole_http_response $response)use($dispatcher){
+            EventHelper::on($server,EventRegister::onRequest,function (SwooleRequest $request,SwooleResponse $response)use($dispatcher){
                 $request_psr = new Request($request);
                 $response_psr = new Response($response);
                 try{
@@ -268,18 +284,45 @@ class Core
 
         $register = ServerManager::getInstance()->getMainEventRegister();
         //注册默认的worker start
-        EventHelper::registerWithAdd($register,EventRegister::onWorkerStart,function (\swoole_server $server,$workerId){
-            if(!in_array(PHP_OS,['Darwin','CYGWIN','WINNT'])){
-                $name = Config::getInstance()->getConf('SERVER_NAME');
-                if( ($workerId < Config::getInstance()->getConf('MAIN_SERVER.SETTING.worker_num')) && $workerId >= 0){
-                    $type = 'Worker';
-                    cli_set_process_title("{$name}.{$type}.{$workerId}");
-                }
+        EventHelper::registerWithAdd($register,EventRegister::onWorkerStart,function (Server $server,$workerId){
+            $serverName = Config::getInstance()->getConf('SERVER_NAME');
+            $type = 'Unknown';
+            if(($workerId < Config::getInstance()->getConf('MAIN_SERVER.SETTING.worker_num')) && $workerId >= 0){
+                $type = 'Worker';
             }
+            $processName = "{$serverName}.{$type}.{$workerId}";
+            if(!in_array(PHP_OS,['Darwin','CYGWIN','WINNT'])){
+                cli_set_process_title($processName);
+            }
+            $table = Manager::getInstance()->getProcessTable();
+            $pid = getmypid();
+            $table->set($pid,[
+                'pid'=>$pid,
+                'name'=>$processName,
+                'group'=>"{$serverName}.Worker"
+            ]);
+            Timer::tick(1*1000,function ()use($table,$pid){
+                $table->set($pid,[
+                    'memoryUsage'=>memory_get_usage(),
+                    'memoryPeakUsage'=>memory_get_peak_usage(true)
+                ]);
+            });
         });
 
+        EventHelper::registerWithAdd($register,$register::onWorkerStop,function (){
+            $table = Manager::getInstance()->getProcessTable();
+            $pid = getmypid();
+            $table->del($pid);
+            Timer::clearAll();
+            SwooleEvent::exit();
+        });
+
+        /*
+         * 开启reload async的时候，清理事件
+         */
         EventHelper::registerWithAdd($register,$register::onWorkerExit,function (){
             Timer::clearAll();
+            SwooleEvent::exit();
         });
     }
 
@@ -296,16 +339,22 @@ class Core
 
     private function extraHandler()
     {
+        $serverName = Config::getInstance()->getConf('SERVER_NAME');
         //注册crontab进程
         Crontab::getInstance()->__run();
         //注册Task进程
         $config = Config::getInstance()->getConf('MAIN_SERVER.TASK');
         $config = new TaskConfig($config);
         $config->setTempDir(EASYSWOOLE_TEMP_DIR);
-        $config->setServerName(Config::getInstance()->getConf('SERVER_NAME'));
+        $config->setServerName($serverName);
         $config->setOnException(function (\Throwable $throwable){
             Trigger::getInstance()->throwable($throwable);
         });
-        TaskManager::getInstance($config)->attachToServer(ServerManager::getInstance()->getSwooleServer());
+        $server = ServerManager::getInstance()->getSwooleServer();
+        TaskManager::getInstance($config)->attachToServer($server);
+        //初始化进程管理器
+        Manager::getInstance()->attachToServer($server);
+        //初始化Bridge
+        Bridge::getInstance()->attachServer($server);
     }
 }

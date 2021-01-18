@@ -437,13 +437,10 @@ class QueryBuilder
             $columns = $this->_field;
         }
         $column = is_array($columns) ? implode(', ', $columns) : $columns;
-        if (strpos($tableName, '.') === false) {
-            $this->_tableName = $this->prefix . $tableName;
-        } else {
-            $this->_tableName = $tableName;
-        }
+
+        $this->_tableName = $tableName;
         $this->_query = 'SELECT ' . implode(' ', $this->_queryOptions) . ' ' .
-            $column . " FROM " . $this->_tableName;
+            $column . " FROM " . $this->_paserTableName();
         if($numRows == null){
             $numRows = $this->_limit;
         }
@@ -460,6 +457,9 @@ class QueryBuilder
      */
     public function getOne($tableName, $columns = '*'): ?QueryBuilder
     {
+        if ($columns === '*'){
+            $columns = $this->_field;
+        }
         return $this->get($tableName, 1, $columns);
     }
 
@@ -570,7 +570,9 @@ class QueryBuilder
         if ($this->_isSubQuery) {
             return;
         }
-        $this->_query = "UPDATE " . $this->prefix . $tableName;
+
+        $this->_tableName = $tableName;
+        $this->_query = "UPDATE " . $this->_paserTableName();
         if (is_array($this->_field)) {
             foreach ($tableData as $key => $val) {
                 if (!in_array($key, $this->_field)) {
@@ -584,6 +586,31 @@ class QueryBuilder
     }
 
     /**
+     * 插入多行数据
+     * @param string $tableName 插入的表名称
+     * @param array $multiInsertData 需要插入的数据
+     * @param array|null $dataKeys 插入数据对应的字段名
+     * @return array|bool
+     * TODO 多行插入应优化为INSERT INTO ... VALUES (...) , (...)
+     */
+    public function insertMulti($tableName, array $multiInsertData, array $dataKeys = null)
+    {
+        $ids = array();
+        foreach ($multiInsertData as $insertData) {
+            if ($dataKeys !== null) {
+                // apply column-names if given, else assume they're already given in the data
+                $insertData = array_combine($dataKeys, $insertData);
+            }
+            $id = $this->insert($tableName, $insertData);
+            if (!$id) {
+                return false;
+            }
+            $ids[] = $id;
+        }
+        return $ids;
+    }
+
+    /**
      * delete查询
      * @param $tableName
      * @param array|int|null $numRows
@@ -594,7 +621,8 @@ class QueryBuilder
         if ($this->_isSubQuery) {
             return;
         }
-        $table = $this->prefix . $tableName;
+        $this->_tableName = $tableName;
+        $table = $this->_paserTableName();
         if (count($this->_join)) {
             $this->_query = "DELETE " . preg_replace('/.* (.*)/', '$1', $table) . " FROM " . $table;
         } else {
@@ -1091,7 +1119,8 @@ class QueryBuilder
         if ($this->_isSubQuery) {
             return;
         }
-        $this->_query = $operation . " " . implode(' ', $this->_queryOptions) . " INTO " . $this->prefix . $tableName;
+        $this->_tableName = $tableName;
+        $this->_query = $operation . " " . implode(' ', $this->_queryOptions) . " INTO " . $this->_paserTableName();
         $this->_buildQuery(null, $insertData);
     }
 
@@ -1229,6 +1258,18 @@ class QueryBuilder
         $this->_query .= ' ' . $operator;
         foreach ($conditions as $cond) {
             list ($concat, $varName, $operator, $val) = $cond;
+
+             if (strpos($varName, '.') !== false && $val !== 'DBNULL' && strpos($varName, '(') === false){
+                // DBNULL是纯字符串条件，也不能有()函数调用
+                $varNameArray = explode('.', $varName);
+                $varName = "`{$varNameArray[0]}`.`{$varNameArray[1]}`";
+            }else{
+                // 不是字符串条件，也没有包含()函数调用
+                if ($val !== 'DBNULL' && strpos($varName, '(') === false){
+                    $varName = "`{$varName}`";
+                }
+            }
+
             $this->_query .= " " . $concat . " " . $varName;
             switch (strtolower($operator)) {
                 case 'not in':
@@ -1278,5 +1319,26 @@ class QueryBuilder
             $this->_query .= $value . ", ";
         }
         $this->_query = rtrim($this->_query, ', ') . " ";
+    }
+
+    /**
+     * 表名构造
+     * @return string
+     */
+    private function _paserTableName()
+    {
+        if (strpos($this->_tableName, '.') === false) {
+            $this->_tableName = $this->prefix . $this->_tableName;
+        }
+
+        if (strpos($this->_tableName, '`') !== false){
+            return $this->_tableName;
+        }
+
+        if (strpos($this->_tableName, ' ') !== false){
+            return $this->_tableName;
+        }
+
+        return "`{$this->_tableName}`";
     }
 }

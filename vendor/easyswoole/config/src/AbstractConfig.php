@@ -11,4 +11,5 @@ abstract class AbstractConfig
     abstract function load(array $array):bool ;
     abstract function merge(array $array):bool ;
     abstract function clear():bool ;
+    abstract function storage();
 }

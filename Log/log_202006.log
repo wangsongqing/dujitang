@@ -1,0 +1,52 @@
+[2020-06-15 14:55:51][debug][error]:[Uncaught Error: Call to undefined method EasySwoole\ORM\Db\Config::getInstance() in /home/wwwroot/dujitang/EasySwooleEvent.php:33
+Stack trace:
+#0 /home/wwwroot/dujitang/vendor/easyswoole/easyswoole/src/Core.php(130): EasySwoole\EasySwoole\EasySwooleEvent::mainServerCreate(Object(EasySwoole\EasySwoole\Swoole\EventRegister))
+#1 /home/wwwroot/dujitang/vendor/easyswoole/easyswoole/src/Command/DefaultCommand/Start.php(42): EasySwoole\EasySwoole\Core->createServer()
+#2 /home/wwwroot/dujitang/vendor/easyswoole/easyswoole/src/Command/CommandContainer.php(46): EasySwoole\EasySwoole\Command\DefaultCommand\Start->exec(Array)
+#3 /home/wwwroot/dujitang/vendor/easyswoole/easyswoole/src/Command/CommandRunner.php(62): EasySwoole\EasySwoole\Command\CommandContainer->hook('start', Array)
+#4 /home/wwwroot/dujitang/easyswoole(24): EasySwoole\EasySwoole\Command\CommandRunner->run(Array)
+#5 {main}
+  thrown at file:/home/wwwroot/dujitang/EasySwooleEvent.php line:33]
+[2020-06-15 15:42:21][debug][warning]:[The magic method __callStatic() must have public visibility and be static at file:/home/wwwroot/dujitang/App/Common/NoSql/PRedis.php line:6]
+[2020-06-15 18:02:47][debug][error]:[Uncaught EasySwoole\ORM\Exception\Exception: SQLSTATE[HY000] [2002] Connection refused in /home/wwwroot/dujitang/vendor/easyswoole/orm/src/Db/MysqlPool.php:22
+Stack trace:
+#0 /home/wwwroot/dujitang/vendor/easyswoole/pool/src/AbstractPool.php(295): EasySwoole\ORM\Db\MysqlPool->createObject()
+#1 /home/wwwroot/dujitang/vendor/easyswoole/pool/src/AbstractPool.php(253): EasySwoole\Pool\AbstractPool->initObject()
+#2 /home/wwwroot/dujitang/vendor/easyswoole/pool/src/AbstractPool.php(227): EasySwoole\Pool\AbstractPool->keepMin(5)
+#3 {main}
+  thrown at file:/home/wwwroot/dujitang/vendor/easyswoole/orm/src/Db/MysqlPool.php line:22]
+[2020-06-16 02:12:12][debug][error]:[Class 'App\HttpController\Db' not found at file:/home/wwwroot/dujitang/App/HttpController/Test.php line:20]
+[2020-06-16 02:12:12][debug][error]:[Class 'App\HttpController\Db' not found at file:/home/wwwroot/dujitang/App/HttpController/Test.php line:20]
+[2020-06-16 02:12:12][debug][error]:[Class 'App\HttpController\Db' not found at file:/home/wwwroot/dujitang/App/HttpController/Test.php line:20]
+[2020-06-16 02:12:38][debug][error]:[Class 'App\HttpController\Db' not found at file:/home/wwwroot/dujitang/App/HttpController/Test.php line:20]
+[2020-06-16 11:20:08][debug][error]:[Uncaught EasySwoole\ORM\Exception\Exception: SQLSTATE[HY000] [2002] Connection refused in /home/wwwroot/dujitang/vendor/easyswoole/orm/src/Db/MysqlPool.php:22
+Stack trace:
+#0 /home/wwwroot/dujitang/vendor/easyswoole/pool/src/AbstractPool.php(295): EasySwoole\ORM\Db\MysqlPool->createObject()
+#1 /home/wwwroot/dujitang/vendor/easyswoole/pool/src/AbstractPool.php(253): EasySwoole\Pool\AbstractPool->initObject()
+#2 /home/wwwroot/dujitang/vendor/easyswoole/pool/src/AbstractPool.php(227): EasySwoole\Pool\AbstractPool->keepMin(5)
+#3 {main}
+  thrown at file:/home/wwwroot/dujitang/vendor/easyswoole/orm/src/Db/MysqlPool.php line:22]
+[2020-06-18 11:14:57][debug][error]:[Class 'App\HttpController\Db' not found at file:/home/wwwroot/dujitang/App/HttpController/Test.php line:20]
+[2020-06-18 11:15:03][debug][error]:[Class 'App\HttpController\Db' not found at file:/home/wwwroot/dujitang/App/HttpController/Test.php line:20]
+[2020-06-18 11:15:03][debug][error]:[Class 'App\HttpController\Db' not found at file:/home/wwwroot/dujitang/App/HttpController/Test.php line:20]
+[2020-06-18 11:15:08][debug][error]:[Class 'App\HttpController\Db' not found at file:/home/wwwroot/dujitang/App/HttpController/Test.php line:20]
+[2020-06-20 20:06:54][debug][error]:[Class 'App\HttpController\Db' not found at file:/home/wwwroot/dujitang/App/HttpController/Test.php line:20]
+[2020-06-20 20:06:54][debug][error]:[Class 'App\HttpController\Db' not found at file:/home/wwwroot/dujitang/App/HttpController/Test.php line:20]
+[2020-06-20 20:06:54][debug][error]:[Class 'App\HttpController\Db' not found at file:/home/wwwroot/dujitang/App/HttpController/Test.php line:20]
+[2020-06-20 20:06:57][debug][error]:[Class 'App\HttpController\Db' not found at file:/home/wwwroot/dujitang/App/HttpController/Test.php line:20]
+[2020-06-23 05:12:56][debug][error]:[Class 'App\HttpController\Db' not found at file:/home/wwwroot/dujitang/App/HttpController/Test.php line:20]
+[2020-06-23 05:12:58][debug][error]:[Class 'App\HttpController\Db' not found at file:/home/wwwroot/dujitang/App/HttpController/Test.php line:20]
+[2020-06-23 05:12:58][debug][error]:[Class 'App\HttpController\Db' not found at file:/home/wwwroot/dujitang/App/HttpController/Test.php line:20]
+[2020-06-23 05:13:17][debug][error]:[Class 'App\HttpController\Db' not found at file:/home/wwwroot/dujitang/App/HttpController/Test.php line:20]
+[2020-06-25 14:15:01][debug][error]:[Class 'App\HttpController\Db' not found at file:/home/wwwroot/dujitang/App/HttpController/Test.php line:20]
+[2020-06-25 14:15:01][debug][error]:[Class 'App\HttpController\Db' not found at file:/home/wwwroot/dujitang/App/HttpController/Test.php line:20]
+[2020-06-25 14:15:06][debug][error]:[Class 'App\HttpController\Db' not found at file:/home/wwwroot/dujitang/App/HttpController/Test.php line:20]
+[2020-06-25 14:15:11][debug][error]:[Class 'App\HttpController\Db' not found at file:/home/wwwroot/dujitang/App/HttpController/Test.php line:20]
+[2020-06-27 23:18:40][debug][error]:[Class 'App\HttpController\Db' not found at file:/home/wwwroot/dujitang/App/HttpController/Test.php line:20]
+[2020-06-27 23:18:41][debug][error]:[Class 'App\HttpController\Db' not found at file:/home/wwwroot/dujitang/App/HttpController/Test.php line:20]
+[2020-06-27 23:18:45][debug][error]:[Class 'App\HttpController\Db' not found at file:/home/wwwroot/dujitang/App/HttpController/Test.php line:20]
+[2020-06-27 23:18:49][debug][error]:[Class 'App\HttpController\Db' not found at file:/home/wwwroot/dujitang/App/HttpController/Test.php line:20]
+[2020-06-30 08:13:52][debug][error]:[Class 'App\HttpController\Db' not found at file:/home/wwwroot/dujitang/App/HttpController/Test.php line:20]
+[2020-06-30 08:13:52][debug][error]:[Class 'App\HttpController\Db' not found at file:/home/wwwroot/dujitang/App/HttpController/Test.php line:20]
+[2020-06-30 08:13:52][debug][error]:[Class 'App\HttpController\Db' not found at file:/home/wwwroot/dujitang/App/HttpController/Test.php line:20]
+[2020-06-30 08:13:58][debug][error]:[Class 'App\HttpController\Db' not found at file:/home/wwwroot/dujitang/App/HttpController/Test.php line:20]

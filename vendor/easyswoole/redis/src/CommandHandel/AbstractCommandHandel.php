@@ -11,6 +11,8 @@ namespace EasySwoole\Redis\CommandHandel;
 
 use EasySwoole\Redis\Config\RedisConfig;
 use EasySwoole\Redis\CrcHash;
+use EasySwoole\Redis\Exception\RedisClusterException;
+use EasySwoole\Redis\Exception\RedisException;
 use EasySwoole\Redis\Pipe;
 use EasySwoole\Redis\Redis;
 use EasySwoole\Redis\RedisCluster;
@@ -27,6 +29,7 @@ Abstract class AbstractCommandHandel
     protected $key;
     //slot值
     protected $slot;
+    protected $commandData;
 
     function __construct(Redis $redis)
     {
@@ -44,6 +47,11 @@ Abstract class AbstractCommandHandel
                 return ['PIPE'];
             }
         }
+
+        $this->commandData = $commandData;
+        if (!in_array($this->commandName, ['StartPipe', 'ExecPipe'])) {
+            $this->onBeforeEvent($this->commandData);
+        }
         return $commandData;
     }
 
@@ -51,7 +59,7 @@ Abstract class AbstractCommandHandel
     {
         //开启了事务
         if ($this->redis->getTransaction() && $this->redis->getTransaction()->isTransaction() == true) {
-            $this->redis->getTransaction()->addCommand($this->commandName);
+            $this->redis->getTransaction()->addCommand([$this->commandName, $this->commandData]);
             //事务命令忽略
             if (!in_array(strtolower($this->commandName), RedisTransaction::IGNORE_COMMAND)) {
                 return 'QUEUED';
@@ -69,9 +77,18 @@ Abstract class AbstractCommandHandel
         if ($recv->getStatus() != $recv::STATUS_OK) {
             $this->redis->setErrorType($recv->getErrorType());
             $this->redis->setErrorMsg($recv->getMsg());
-            return false;
+            if ($this->redis instanceof RedisCluster) {
+                throw new RedisClusterException($recv->getMsg(), $recv->getErrorType());
+            } else {
+                throw new RedisException($recv->getMsg(), $recv->getErrorType());
+            }
         }
-        return $this->handelRecv($recv);
+        $result = $this->handelRecv($recv);
+
+        if (!in_array($this->commandName, ['StartPipe', 'ExecPipe'])) {
+            $this->onAfterEvent($this->commandData, $result);
+        }
+        return $result;
     }
 
     abstract function handelCommandData(...$data);
@@ -107,13 +124,15 @@ Abstract class AbstractCommandHandel
         switch ($this->redis->getConfig()->getSerialize()) {
             case RedisConfig::SERIALIZE_PHP:
                 {
-                    return unserialize($val);
+                    $res = unserialize($val);
+                    return $res !== false ? $res : $val;
                     break;
                 }
 
             case RedisConfig::SERIALIZE_JSON:
                 {
-                    return json_decode($val, true);
+                    $res = json_decode($val, true);
+                    return $res !== null ? $res : $val;
                     break;
                 }
             default:
@@ -137,4 +156,34 @@ Abstract class AbstractCommandHandel
         }
     }
 
+    protected function onBeforeEvent($commandData)
+    {
+        if (is_callable($this->redis->getConfig()->getBeforeEvent())) {
+            $commandName = array_shift($commandData);
+            call_user_func($this->redis->getConfig()->getBeforeEvent(), $commandName, $commandData);
+        }
+    }
+
+    protected function onAfterEvent($commandData, $result)
+    {
+        if (in_array($this->commandName, ['StartPipe', 'ExecPipe']) || ($this->redis->getPipe() && $this->redis->getPipe()->isStartPipe() == true)) {
+            return;
+        }
+        if (is_callable($this->redis->getConfig()->getAfterEvent())) {
+            $commandName = array_shift($commandData);
+            call_user_func($this->redis->getConfig()->getAfterEvent(), $commandName, $commandData, $result);
+        }
+    }
+
+    /**
+     * 兼容event hook+pipe
+     * setCommandData
+     * @param $commandData
+     * @author tioncico
+     * Time: 14:08
+     */
+    public function setCommandData($commandData)
+    {
+        $this->commandData = $commandData;
+    }
 }

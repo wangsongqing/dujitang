@@ -117,6 +117,10 @@ abstract class AbstractPool
         }
         $object = $this->poolChannel->pop($timeout);
         if (is_object($object)) {
+            $hash = $object->__objHash;
+            //标记该对象已经被使用，不在pool中
+            $this->objHash[$hash] = false;
+            $object->__lastUseTime = time();
             if ($object instanceof ObjectInterface) {
                 try {
                     if ($object->beforeUse() === false) {
@@ -138,10 +142,6 @@ abstract class AbstractPool
                     }
                 }
             }
-            $hash = $object->__objHash;
-            //标记该对象已经被使用，不在pool中
-            $this->objHash[$hash] = false;
-            $object->__lastUseTime = time();
             return $object;
         } else {
             return null;
@@ -153,7 +153,7 @@ abstract class AbstractPool
      */
     public function unsetObj($obj): bool
     {
-        if ($this->isPoolObject($obj) && (!$this->isInPool($obj))) {
+        if (!$this->isInPool($obj)) {
             /*
              * 主动回收可能存在的上下文
              */
@@ -190,20 +190,31 @@ abstract class AbstractPool
         * 懒惰模式，可以提前创建 pool对象，因此调用钱执行初始化检测
         */
         $this->init();
-        $list = [];
-        while (!$this->poolChannel->isEmpty()) {
+        $size = $this->poolChannel->length();
+        while (!$this->poolChannel->isEmpty() && $size >= 0) {
+            $size--;
             $item = $this->poolChannel->pop(0.01);
+            if(!$item){
+                continue;
+            }
+            //回收超时没有使用的链接
             if (time() - $item->__lastUseTime > $idleTime) {
                 //标记为不在队列内，允许进行gc回收
                 $hash = $item->__objHash;
                 $this->objHash[$hash] = false;
                 $this->unsetObj($item);
             } else {
-                $list[] = $item;
+                //执行itemIntervalCheck检查
+                if(!$this->itemIntervalCheck($item)){
+                    //标记为不在队列内，允许进行gc回收
+                    $hash = $item->__objHash;
+                    $this->objHash[$hash] = false;
+                    $this->unsetObj($item);
+                    continue;
+                }else{
+                    $this->poolChannel->push($item);
+                }
             }
-        }
-        foreach ($list as $item) {
-            $this->poolChannel->push($item);
         }
     }
 
@@ -216,11 +227,23 @@ abstract class AbstractPool
         $this->keepMin($this->getConfig()->getMinObjectNum());
     }
 
+    /**
+     * @param $item  __lastUseTime 属性表示该对象被最后一次使用的时间
+     * @return bool
+     */
+    protected function itemIntervalCheck($item):bool
+    {
+        return true;
+    }
+
     /*
-    * 可以解决冷启动问题,其实是是keepMin别名
+    * 可以解决冷启动问题
     */
     public function keepMin(?int $num = null): int
     {
+        if($num == null){
+            $num = $this->getConfig()->getMinObjectNum();
+        }
         if ($this->createdNum < $num) {
             $left = $num - $this->createdNum;
             while ($left > 0) {
@@ -319,12 +342,14 @@ abstract class AbstractPool
             Timer::clear($this->timerId);
             $this->timerId = null;
         }
-        while (!$this->poolChannel->isEmpty()) {
-            $item = $this->poolChannel->pop(0.01);
-            $this->unsetObj($item);
+        if($this->poolChannel){
+            while (!$this->poolChannel->isEmpty()) {
+                $item = $this->poolChannel->pop(0.01);
+                $this->unsetObj($item);
+            }
+            $this->poolChannel->close();
+            $this->poolChannel = null;
         }
-        $this->poolChannel->close();
-        $this->poolChannel = null;
     }
 
     function reset(): AbstractPool

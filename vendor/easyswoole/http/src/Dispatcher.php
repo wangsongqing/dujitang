@@ -14,19 +14,32 @@ use EasySwoole\Http\AbstractInterface\Controller;
 use EasySwoole\Http\Exception\ControllerPoolEmpty;
 use EasySwoole\Http\Exception\RouterError;
 use EasySwoole\Http\Message\Status;
-use Swoole\Coroutine as Co;
 use FastRoute\Dispatcher\GroupCountBased;
+use FastRoute\Dispatcher as RouterDispatcher;
+use FastRoute\RouteCollector;
+use Swoole\Coroutine\Channel;
 
 class Dispatcher
 {
     private $router = null;
+    /**
+     * @var AbstractRouter
+     */
     private $routerRegister = null;
+    /**
+     * @var RouteCollector
+     */
+    private $extraRouterCollector = null;
+    private $routerMethodNotAllowCallBack;
+    private $routerNotFoundCallBack;
+    private $globalModel;
     private $controllerNameSpacePrefix;
     private $maxDepth;
     private $maxPoolNum;
     private $controllerPoolCreateNum = [];
     private $httpExceptionHandler = null;
     private $controllerPoolWaitTime = 5.0;
+    private $pathInfoMode = true;
 
     function __construct(string $controllerNameSpace,int $maxDepth = 5,int $maxPoolNum = 200)
     {
@@ -49,46 +62,107 @@ class Dispatcher
         $this->httpExceptionHandler = $handler;
     }
 
+    /**
+     * @return false|null|AbstractRouter
+     */
+    function getRouterRegister()
+    {
+        return $this->routerRegister;
+    }
+
+    function setExtraRouterCollector(RouteCollector $collector)
+    {
+        $this->extraRouterCollector = $collector;
+    }
+
+    function getExtraRouterCollector()
+    {
+        return $this->extraRouterCollector;
+    }
+
+    /**
+     * @param mixed $routerMethodNotAllowCallBack
+     */
+    public function setRouterMethodNotAllowCallBack($routerMethodNotAllowCallBack): void
+    {
+        $this->routerMethodNotAllowCallBack = $routerMethodNotAllowCallBack;
+    }
+
+    /**
+     * @param mixed $routerNotFoundCallBack
+     */
+    public function setRouterNotFoundCallBack($routerNotFoundCallBack): void
+    {
+        $this->routerNotFoundCallBack = $routerNotFoundCallBack;
+    }
+
+    public function setRouter(?GroupCountBased $based)
+    {
+        $this->router = $based;
+    }
+
+    public function initRouter(?string $routerClass = null)
+    {
+        if($routerClass){
+            $class = $routerClass;
+        }else{
+            $class = $this->controllerNameSpacePrefix.'\\Router';
+        }
+        try{
+            $data = [];
+            //数据合并。全局的Router class设置的权限最高。
+            if(class_exists($class)){
+                $ref = new \ReflectionClass($class);
+                if($ref->isSubclassOf(AbstractRouter::class)){
+                    $this->routerRegister = $ref->newInstance();
+                    $data = $this->routerRegister->getRouteCollector()->getData();
+                    if($this->routerRegister->getMethodNotAllowCallBack()){
+                        $this->routerMethodNotAllowCallBack = $this->routerRegister->getMethodNotAllowCallBack();
+                    }
+                    if($this->routerRegister->getRouterNotFoundCallBack()){
+                        $this->routerNotFoundCallBack = $this->routerRegister->getRouterNotFoundCallBack();
+                    }
+                    $this->globalModel = $this->routerRegister->isGlobalMode();
+                    $this->pathInfoMode = $this->routerRegister->isPathInfoMode();
+                }else{
+                    throw new RouterError("class : {$class} not AbstractRouter class");
+                }
+            }
+
+            if($this->extraRouterCollector){
+                $data = $data + $this->extraRouterCollector->getData();
+            }
+            if(!empty($data)){
+                $this->router = new GroupCountBased($data);
+            }else{
+                $this->router = false;
+            }
+        }catch (\Throwable $throwable){
+            $this->router = false;
+            throw new RouterError($throwable->getMessage());
+        }
+    }
+
     public function dispatch(Request $request,Response $response):void
     {
         /*
          * 进行一次初始化判定
          */
         if($this->router === null){
-            $class = $this->controllerNameSpacePrefix.'\\Router';
-            try{
-                if(class_exists($class)){
-                    $ref = new \ReflectionClass($class);
-                    if($ref->isSubclassOf(AbstractRouter::class)){
-                        $this->routerRegister =  $ref->newInstance();
-                        $this->router = new GroupCountBased($this->routerRegister->getRouteCollector()->getData());
-                    }else{
-                        $this->router = false;
-                        throw new RouterError("class : {$class} not AbstractRouter class");
-                    }
-                }else{
-                    $this->router = false;
-                }
-            }catch (\Throwable $throwable){
-                $this->router = false;
-                throw new RouterError($throwable->getMessage());
-            }
+            $this->initRouter();
         }
         $path = UrlParser::pathInfo($request->getUri()->getPath());
         if($this->router instanceof GroupCountBased){
+            if($this->pathInfoMode){
+                $routerPath = $path;
+            }else{
+                $routerPath = $request->getUri()->getPath();
+            }
             $handler = null;
-            $routeInfo = $this->router->dispatch($request->getMethod(),$request->getUri()->getPath());
+            $routeInfo = $this->router->dispatch($request->getMethod(),$routerPath);
             if($routeInfo !== false){
                 switch ($routeInfo[0]) {
-                    case \FastRoute\Dispatcher::NOT_FOUND:{
-                        $handler = $this->routerRegister->getRouterNotFoundCallBack();
-                        break;
-                    }
-                    case \FastRoute\Dispatcher::METHOD_NOT_ALLOWED:{
-                        $handler = $this->routerRegister->getMethodNotAllowCallBack();
-                        break;
-                    }
-                    case \FastRoute\Dispatcher::FOUND:{
+                    case RouterDispatcher::FOUND:{
                         $handler = $routeInfo[1];
                         //合并解析出来的数据
                         $vars = $routeInfo[2];
@@ -96,8 +170,13 @@ class Dispatcher
                         $request->withQueryParams($vars+$data);
                         break;
                     }
+                    case RouterDispatcher::METHOD_NOT_ALLOWED:{
+                        $handler = $this->routerMethodNotAllowCallBack;
+                        break;
+                    }
+                    case RouterDispatcher::NOT_FOUND:
                     default:{
-                        $handler = $this->routerRegister->getRouterNotFoundCallBack();
+                        $handler = $this->routerNotFoundCallBack;
                         break;
                     }
                 }
@@ -129,7 +208,7 @@ class Dispatcher
             /*
                 * 全局模式的时候，都拦截。非全局模式，否则继续往下
             */
-            if($this->routerRegister->isGlobalMode()){
+            if($this->globalModel){
                 return;
             }
         }
@@ -204,12 +283,12 @@ class Dispatcher
     {
         $classKey = $this->generateClassKey($class);
         if(!isset($this->$classKey)){
-            $this->$classKey = new Co\Channel($this->maxPoolNum+1);
+            $this->$classKey = new Channel($this->maxPoolNum+1);
             $this->controllerPoolCreateNum[$classKey] = 0;
         }
         $channel = $this->$classKey;
         //懒惰创建模式
-        /** @var Co\Channel $channel */
+        /** @var Channel $channel */
         if($channel->isEmpty()){
             $createNum = $this->controllerPoolCreateNum[$classKey];
             if($createNum < $this->maxPoolNum){
@@ -231,7 +310,7 @@ class Dispatcher
     protected function recycleController(string $class,Controller $obj)
     {
         $classKey = $this->generateClassKey($class);
-        /** @var Co\Channel $channel */
+        /** @var Channel $channel */
         $channel = $this->$classKey;
         $channel->push($obj);
     }

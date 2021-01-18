@@ -18,6 +18,7 @@ class MysqliClient extends Client implements ClientInterface,ObjectInterface
         $ret = null;
         $errno = 0;
         $error = '';
+        $stmt = null;
         try{
             if($rawQuery){
                 $ret = $this->rawQuery($builder->getLastQuery(),$this->config->getTimeout());
@@ -42,24 +43,30 @@ class MysqliClient extends Client implements ClientInterface,ObjectInterface
             $this->mysqlClient()->insert_id     = 0;
             $this->mysqlClient()->affected_rows = 0;
             //结果设置
-            $result->setResult($ret);
+            if (!$rawQuery && $ret && $this->config->isFetchMode()){
+                $result->setResult(new Cursor($stmt));
+            } else {
+                $result->setResult($ret);
+            }
             $result->setLastError($error);
             $result->setLastErrorNo($errno);
             $result->setLastInsertId($insert_id);
             $result->setAffectedRows($affected_rows);
+//
+//            $this->lastQueryResult = $result;
+//            $this->lastQuery       = $builder;
         }catch (\Throwable $throwable){
             throw $throwable;
         }finally{
             if($errno){
-                /*
-                    * 断线的时候回收链接
-                */
+                /**
+                 * 断线收回链接
+                 */
                 if(in_array($errno,[2006,2013])){
                     $this->close();
                 }
-                throw new Exception($error);
+                throw new Exception($error." [{$builder->getLastQuery()}]");
             }
-
         }
         return $result;
     }
@@ -71,7 +78,7 @@ class MysqliClient extends Client implements ClientInterface,ObjectInterface
 
     function objectRestore()
     {
-        // TODO: Implement objectRestore() method.
+        $this->reset();
     }
 
     function beforeUse(): ?bool

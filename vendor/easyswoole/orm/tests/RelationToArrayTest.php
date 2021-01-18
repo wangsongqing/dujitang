@@ -1,6 +1,6 @@
 <?php
 /**
- * Created by PhpStorm.
+ * 关联查询、toArray
  * User: Siam
  * Date: 2019/11/15
  * Time: 17:32
@@ -12,6 +12,11 @@ use EasySwoole\ORM\Db\Config;
 use EasySwoole\ORM\Db\Connection;
 use EasySwoole\ORM\DbManager;
 use PHPUnit\Framework\TestCase;
+
+
+
+use EasySwoole\ORM\Tests\models\TestUserListModel;
+use EasySwoole\ORM\Tests\models\TestRelationModel;
 
 class RelationToArrayTest extends TestCase
 {
@@ -41,7 +46,7 @@ class RelationToArrayTest extends TestCase
         $test_user_model->save();
 
         $user_list = TestUserListModel::create();
-        $user_list->name = 'siam';
+        $user_list->name = 'siam_relation';
         $user_list->age = 21;
         $user_list->addTime = "2019-11-15 17:37:20";
         $user_list->state=1;
@@ -58,7 +63,87 @@ class RelationToArrayTest extends TestCase
 
         $toArray = $test_user_model->toArray(false, false);
         $this->assertNotEmpty($toArray['user_list']);
-        $this->assertInstanceOf(TestUserListModel::class, $toArray['user_list']);
+        $this->assertIsArray($toArray['user_list']);
+    }
+
+    /**
+     * 在invoke中触发关联
+     * @throws \Throwable
+     */
+    public function testGetInvokeRelation()
+    {
+        DbManager::getInstance()->invoke(function ($client) {
+            $testUserModel = TestRelationModel::invoke($client)->with('user_list')->get();
+            $this->assertNotEmpty($testUserModel['user_list']);
+            $this->assertInstanceOf(TestUserListModel::class, $testUserModel['user_list']);
+        });
+    }
+
+    /**
+     * field筛选 toArray
+     * @throws \EasySwoole\Mysqli\Exception\Exception
+     * @throws \EasySwoole\ORM\Exception\Exception
+     * @throws \Throwable
+     */
+    public function testFieldFilterToArray()
+    {
+        $test_user_model = TestRelationModel::create()->get([
+            'name' => 'siam_relation'
+        ]);
+        $relation =  $test_user_model->user_list();
+        $this->assertInstanceOf(TestUserListModel::class, $relation);
+
+        $toArray = $test_user_model->field(['user_list'])->toArray(false, false);
+        $this->assertEquals(1, count($toArray));
+        $this->assertNotEmpty($toArray['user_list']);
+        $this->assertIsArray($toArray['user_list']);
+    }
+
+    /**
+     * hidden隐藏
+     * @throws
+     */
+    public function testHiddenFilterToArray()
+    {
+        $test_user_model = TestRelationModel::create()->get([
+            'name' => 'siam_relation'
+        ]);
+        $test_user_model->user_list();
+
+        $toArray = $test_user_model->hidden('user_list')->toArray(false, false);
+        $this->assertEquals(5, count($toArray));
+        $this->assertArrayNotHasKey("user_list", $toArray);
+    }
+
+    /**
+     * append 追加非模型属性字段（自定义获取器）
+     * @throws
+     */
+    public function testAppenFilterToArray()
+    {
+        $test_user_model = TestRelationModel::create()->get([
+            'name' => 'siam_relation'
+        ]);
+        $test_user_model->user_list();
+        $toArray = $test_user_model->append(['append_one'])->toArray(false, false);
+
+        $this->assertEquals(7, count($toArray));
+        $this->assertArrayHasKey("append_one", $toArray);
+    }
+
+    /**
+     * visible 筛选显示
+     * @throws
+     */
+    public function testVisibleFilterToArray()
+    {
+        $test_user_model = TestRelationModel::create()->get([
+            'name' => 'siam_relation'
+        ]);
+        $test_user_model->user_list();
+        $toArray = $test_user_model->visible(['name'])->toArray(false, false);
+
+        $this->assertEquals(1, count($toArray));
     }
 
     public function testJson()
@@ -68,6 +153,22 @@ class RelationToArrayTest extends TestCase
         ]);
         $relation =  $test_user_model->user_list();
         // echo json_encode($test_user_model);
+        $this->assertIsString(json_encode($test_user_model));
+    }
+
+    /**
+     * 测试 指定字段 json
+     * @throws
+     */
+    public function testVisibleJson()
+    {
+        $test_user_model = TestRelationModel::create()->get([
+            'name' => 'siam_relation'
+        ])->visible(['name']);
+        $relation =  $test_user_model->user_list();
+        $array  = json_decode(json_encode($test_user_model), true);
+
+        $this->assertEquals(1, count($array));
         $this->assertIsString(json_encode($test_user_model));
     }
 
@@ -112,6 +213,17 @@ class RelationToArrayTest extends TestCase
         $this->assertInstanceOf(TestUserListModel::class, $hasMany[1]);
     }
 
+    public function testHasManyWhere()
+    {
+        $test_user_model = TestRelationModel::create()->get([
+            'name' => 'siam'
+        ]);
+        $hasMany =  $test_user_model->has_many_where();
+        $this->assertEquals(1, count($hasMany));
+        $this->assertEquals(21, $hasMany[0]->age);
+        $this->assertInstanceOf(TestUserListModel::class, $hasMany[0]);
+    }
+
     public function testGetWith()
     {
         $test = TestRelationModel::create()->with(['user_list', 'has_many'])->get([
@@ -132,7 +244,6 @@ class RelationToArrayTest extends TestCase
 
         $this->assertEquals(2, count($test[0]['has_many']));
         $this->assertInstanceOf(TestUserListModel::class, $test[0]['has_many'][1]);
-
     }
 
     public function testDeleteAllHasMany()

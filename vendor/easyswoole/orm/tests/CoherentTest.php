@@ -1,7 +1,7 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: Administrator
+ * 连贯操作
+ * User: Siam
  * Date: 2019/10/23 0023
  * Time: 22:00
  */
@@ -15,6 +15,9 @@ use EasySwoole\ORM\Db\Config;
 use EasySwoole\ORM\Db\Connection;
 use EasySwoole\ORM\DbManager;
 use PHPUnit\Framework\TestCase;
+
+use EasySwoole\ORM\Tests\models\TestUserListModel;
+
 class CoherentTest extends TestCase
 {
     /**
@@ -91,9 +94,9 @@ class CoherentTest extends TestCase
         /** @var AbstractModel $model7 */
         $model7 = TestUserListModel::create();
         $test7 = $model7->where('name', null, 'is')->get();
-        $this->assertEquals("SELECT  * FROM user_test_list WHERE  name is NULL LIMIT 1", $model7->lastQuery()->getLastQuery());
+        $this->assertEquals("SELECT  * FROM `user_test_list` WHERE  `name` is NULL LIMIT 1", $model7->lastQuery()->getLastQuery());
         $test7 = $model7->where('name', null, 'is not')->get();
-        $this->assertEquals("SELECT  * FROM user_test_list WHERE  name is not NULL LIMIT 1", $model7->lastQuery()->getLastQuery());
+        $this->assertEquals("SELECT  * FROM `user_test_list` WHERE  `name` is not NULL LIMIT 1", $model7->lastQuery()->getLastQuery());
 
     }
 
@@ -117,12 +120,6 @@ class CoherentTest extends TestCase
         $this->assertEquals($order->age, 19);
     }
 
-    public function testSelect()
-    {
-        $groupDivField = TestUserListModel::create()->field('sum(age), `name`')->group('name')->select();
-        $this->assertNotEmpty($groupDivField[0]['sum(age)']);
-    }
-
     public function testJoinData()
     {
         $res = TestUserListModel::create()->field('sum(age) as siam, `name`')->group('name')->all();
@@ -132,11 +129,18 @@ class CoherentTest extends TestCase
 
     public function testFind()
     {
-        $groupDivField = TestUserListModel::create()->field('sum(age), `name`')->group('name')->findAll();
+        $groupDivField = TestUserListModel::create()->field('sum(age), `name`')->group('name')->all();
         $this->assertNotEmpty($groupDivField[0]['sum(age)']);
 
-        $groupDivField = TestUserListModel::create()->field('sum(age), `name`')->group('name')->findOne();
+        $groupDivField = TestUserListModel::create()->field('sum(age), `name`')->group('name')->get();
         $this->assertNotEmpty($groupDivField['sum(age)']);
+    }
+
+    /** 别名时 判断isset */
+    public function testFieldAlias()
+    {
+        $fieldAlias = TestUserListModel::create()->field(['name as teeeee'])->get();
+        $this->assertTrue(isset($fieldAlias['teeeee']), true);
     }
 
     public function testColumn()
@@ -269,7 +273,8 @@ class CoherentTest extends TestCase
      */
     public function testUpdateInc()
     {
-        $res = TestUserListModel::create()->update([
+        $model = TestUserListModel::create();
+        $res   = $model->update([
             'age' => QueryBuilder::inc(2),
         ], [
             'age' => 100
@@ -279,6 +284,8 @@ class CoherentTest extends TestCase
         $user = TestUserListModel::create()->get([
             'age' => 102
         ]);
+        $this->assertInstanceOf(TestUserListModel::class, $user);
+
         $user->age = QueryBuilder::inc(3);
         $res = $user->update();
         $this->assertEquals($res, true);
@@ -298,10 +305,10 @@ class CoherentTest extends TestCase
     {
         $model = TestUserListModel::create();
         $res = $model->tableName('test_user_model', true)->get();
-        $this->assertEquals($model->lastQuery()->getLastQuery(), "SELECT  * FROM test_user_model LIMIT 1");
+        $this->assertEquals($model->lastQuery()->getLastQuery(), "SELECT  * FROM `test_user_model` LIMIT 1");
 
         $res2 = $model->get();
-        $this->assertEquals($model->lastQuery()->getLastQuery(), "SELECT  * FROM user_test_list LIMIT 1");
+        $this->assertEquals($model->lastQuery()->getLastQuery(), "SELECT  * FROM `user_test_list` LIMIT 1");
     }
 
     public function testDeleteAll()

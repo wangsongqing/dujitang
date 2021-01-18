@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7d4691863e3afa842222012c4fc1c63e",
+    "content-hash": "6480780afa7d30005941840d40f7c8ba",
     "packages": [
         {
             "name": "dragonmantank/cron-expression",
@@ -67,72 +67,17 @@
             "time": "2019-03-31T00:38:28+00:00"
         },
         {
-            "name": "easyswoole/annotation",
-            "version": "1.0.6",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/easy-swoole/annotation.git",
-                "reference": "89d586ae21b0ccdcac48bf36e0599077b3b7445b"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/easy-swoole/annotation/zipball/89d586ae21b0ccdcac48bf36e0599077b3b7445b",
-                "reference": "89d586ae21b0ccdcac48bf36e0599077b3b7445b",
-                "shasum": "",
-                "mirrors": [
-                    {
-                        "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
-                        "preferred": true
-                    }
-                ]
-            },
-            "require": {
-                "easyswoole/spl": "^1.1",
-                "php": ">=7.1.0"
-            },
-            "require-dev": {
-                "easyswoole/phpunit": "^1.0",
-                "easyswoole/swoole-ide-helper": "^1.2"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "EasySwoole\\Annotation\\": "src/",
-                    "EasySwoole\\Annotation\\Tests\\": "tests/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "Apache-2.0"
-            ],
-            "authors": [
-                {
-                    "name": "YF",
-                    "email": "291323003@qq.com"
-                }
-            ],
-            "description": "easyswoole component",
-            "homepage": "https://www.easyswoole.com/",
-            "keywords": [
-                "async",
-                "easyswoole",
-                "framework",
-                "swoole"
-            ],
-            "time": "2019-07-22T03:55:57+00:00"
-        },
-        {
             "name": "easyswoole/component",
-            "version": "2.0.8",
+            "version": "2.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/easy-swoole/component.git",
-                "reference": "7e71116018eee26cfdb705fe91159a54df40eefc"
+                "reference": "342b94d6f259e1abdb3262f4afe0ea29daefbd44"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/easy-swoole/component/zipball/7e71116018eee26cfdb705fe91159a54df40eefc",
-                "reference": "7e71116018eee26cfdb705fe91159a54df40eefc",
+                "url": "https://api.github.com/repos/easy-swoole/component/zipball/342b94d6f259e1abdb3262f4afe0ea29daefbd44",
+                "reference": "342b94d6f259e1abdb3262f4afe0ea29daefbd44",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -145,7 +90,6 @@
                 "easyswoole/spl": "^1.1",
                 "easyswoole/utility": "^1.0",
                 "ext-swoole": "^4.4.2",
-                "jeremeamia/superclosure": "^2.4",
                 "php": ">=7.1.0"
             },
             "require-dev": {
@@ -177,20 +121,20 @@
                 "framework",
                 "swoole"
             ],
-            "time": "2020-01-11T02:23:02+00:00"
+            "time": "2020-04-06T14:37:20+00:00"
         },
         {
             "name": "easyswoole/config",
-            "version": "1.0.3",
+            "version": "1.0.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/easy-swoole/config.git",
-                "reference": "7d2754ed63c961d53ed33a69fb92de26e4914e26"
+                "reference": "bdb566ea7ef165c337d7fc6d2d7cf3538233d8a6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/easy-swoole/config/zipball/7d2754ed63c961d53ed33a69fb92de26e4914e26",
-                "reference": "7d2754ed63c961d53ed33a69fb92de26e4914e26",
+                "url": "https://api.github.com/repos/easy-swoole/config/zipball/bdb566ea7ef165c337d7fc6d2d7cf3538233d8a6",
+                "reference": "bdb566ea7ef165c337d7fc6d2d7cf3538233d8a6",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -232,20 +176,20 @@
                 "framework",
                 "swoole"
             ],
-            "time": "2019-07-30T03:08:09+00:00"
+            "time": "2020-03-13T03:27:30+00:00"
         },
         {
             "name": "easyswoole/ddl",
-            "version": "1.0.4",
+            "version": "1.0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/easy-swoole/ddl.git",
-                "reference": "84dbada2c49115b2bacc6a4cc10b166205fae14a"
+                "reference": "14ef9dcc418a29a6a3dde53932ba66e2ab95cbe1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/easy-swoole/ddl/zipball/84dbada2c49115b2bacc6a4cc10b166205fae14a",
-                "reference": "84dbada2c49115b2bacc6a4cc10b166205fae14a",
+                "url": "https://api.github.com/repos/easy-swoole/ddl/zipball/14ef9dcc418a29a6a3dde53932ba66e2ab95cbe1",
+                "reference": "14ef9dcc418a29a6a3dde53932ba66e2ab95cbe1",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -282,20 +226,20 @@
                 "framework",
                 "swoole"
             ],
-            "time": "2019-11-08T11:12:30+00:00"
+            "time": "2020-04-08T08:15:05+00:00"
         },
         {
             "name": "easyswoole/easyswoole",
-            "version": "3.3.4",
+            "version": "3.3.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/easy-swoole/easyswoole.git",
-                "reference": "4d73bdb1d7884ef629992fc95f7c0a59519231b4"
+                "reference": "46f64043d4a3338c6d85ecb905098bad169ab3d6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/easy-swoole/easyswoole/zipball/4d73bdb1d7884ef629992fc95f7c0a59519231b4",
-                "reference": "4d73bdb1d7884ef629992fc95f7c0a59519231b4",
+                "url": "https://api.github.com/repos/easy-swoole/easyswoole/zipball/46f64043d4a3338c6d85ecb905098bad169ab3d6",
+                "reference": "46f64043d4a3338c6d85ecb905098bad169ab3d6",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -309,12 +253,12 @@
                 "easyswoole/component": "^2.0",
                 "easyswoole/config": "^1.0",
                 "easyswoole/http": "^1.0",
+                "easyswoole/socket": "^1.1",
                 "easyswoole/spl": "^1.0",
-                "easyswoole/task": "^1.0",
+                "easyswoole/task": "^1.1",
                 "easyswoole/trigger": "^1.0",
                 "easyswoole/utility": "^1.0",
                 "ext-swoole": ">=4.4.4",
-                "jeremeamia/superclosure": "^2.4",
                 "php": ">=7.1.0"
             },
             "require-dev": {
@@ -327,8 +271,7 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "EasySwoole\\EasySwoole\\": "src/",
-                    "App\\": "App/"
+                    "EasySwoole\\EasySwoole\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -349,20 +292,20 @@
                 "framework",
                 "swoole"
             ],
-            "time": "2019-12-10T05:07:58+00:00"
+            "time": "2020-04-17T05:21:50+00:00"
         },
         {
             "name": "easyswoole/http",
-            "version": "1.4.1",
+            "version": "1.7.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/easy-swoole/http.git",
-                "reference": "1dd718dbc351f139467df905c3707534aebebfae"
+                "reference": "65b84f11e06715ea913bcca100e47b49522ce300"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/easy-swoole/http/zipball/1dd718dbc351f139467df905c3707534aebebfae",
-                "reference": "1dd718dbc351f139467df905c3707534aebebfae",
+                "url": "https://api.github.com/repos/easy-swoole/http/zipball/65b84f11e06715ea913bcca100e47b49522ce300",
+                "reference": "65b84f11e06715ea913bcca100e47b49522ce300",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -372,10 +315,12 @@
                 ]
             },
             "require": {
-                "easyswoole/annotation": "^1.0",
-                "easyswoole/component": "^2.0",
+                "easyswoole/component": "^2.1",
+                "easyswoole/session": "2.x",
                 "easyswoole/spl": "^1.0",
-                "easyswoole/validate": "^1.0",
+                "ext-json": "*",
+                "ext-libxml": "*",
+                "ext-simplexml": "*",
                 "ext-swoole": ">=4.0",
                 "nikic/fast-route": "^1.3",
                 "php": ">=7.1.0",
@@ -408,20 +353,20 @@
                 "framework",
                 "swoole"
             ],
-            "time": "2019-10-21T06:52:58+00:00"
+            "time": "2020-06-10T07:40:44+00:00"
         },
         {
             "name": "easyswoole/log",
-            "version": "1.0.3",
+            "version": "1.0.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/easy-swoole/log.git",
-                "reference": "a9f7a8c139523db90992f89a91f2714413f6d637"
+                "reference": "06d735e64063197d46a5fec93766828e47c40542"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/easy-swoole/log/zipball/a9f7a8c139523db90992f89a91f2714413f6d637",
-                "reference": "a9f7a8c139523db90992f89a91f2714413f6d637",
+                "url": "https://api.github.com/repos/easy-swoole/log/zipball/06d735e64063197d46a5fec93766828e47c40542",
+                "reference": "06d735e64063197d46a5fec93766828e47c40542",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -454,20 +399,20 @@
                 "framework",
                 "swoole"
             ],
-            "time": "2019-05-30T05:30:17+00:00"
+            "time": "2020-05-08T08:07:43+00:00"
         },
         {
             "name": "easyswoole/memcache",
-            "version": "1.0.0",
+            "version": "1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/easy-swoole/memcache.git",
-                "reference": "cc60058323000fb711d9f1a8dcca623af01f2414"
+                "reference": "f3827a7d55e2ab043f5dc1429a4c26578754bd19"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/easy-swoole/memcache/zipball/cc60058323000fb711d9f1a8dcca623af01f2414",
-                "reference": "cc60058323000fb711d9f1a8dcca623af01f2414",
+                "url": "https://api.github.com/repos/easy-swoole/memcache/zipball/f3827a7d55e2ab043f5dc1429a4c26578754bd19",
+                "reference": "f3827a7d55e2ab043f5dc1429a4c26578754bd19",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -495,20 +440,20 @@
                 "Apache-2.0"
             ],
             "description": "Coroutine version of Memcache client",
-            "time": "2019-09-06T13:25:51+00:00"
+            "time": "2020-06-06T11:45:08+00:00"
         },
         {
             "name": "easyswoole/mysqli",
-            "version": "2.1.2",
+            "version": "2.2.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/easy-swoole/mysqli.git",
-                "reference": "cfc66e42071dd1a3565e07b37c4f466b66c7e659"
+                "reference": "177579daeaa3824cdf043035121224870fae57f3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/easy-swoole/mysqli/zipball/cfc66e42071dd1a3565e07b37c4f466b66c7e659",
-                "reference": "cfc66e42071dd1a3565e07b37c4f466b66c7e659",
+                "url": "https://api.github.com/repos/easy-swoole/mysqli/zipball/177579daeaa3824cdf043035121224870fae57f3",
+                "reference": "177579daeaa3824cdf043035121224870fae57f3",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -549,20 +494,20 @@
                 "framework",
                 "swoole"
             ],
-            "time": "2019-12-12T09:21:19+00:00"
+            "time": "2020-03-13T07:20:33+00:00"
         },
         {
             "name": "easyswoole/orm",
-            "version": "1.2.10",
+            "version": "1.4.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/easy-swoole/orm.git",
-                "reference": "78f1385a872e5f7fd01f2e0cf5a445f70a0471af"
+                "reference": "e2207297ebcbae886c12880d12a01b198e66cd89"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/easy-swoole/orm/zipball/78f1385a872e5f7fd01f2e0cf5a445f70a0471af",
-                "reference": "78f1385a872e5f7fd01f2e0cf5a445f70a0471af",
+                "url": "https://api.github.com/repos/easy-swoole/orm/zipball/e2207297ebcbae886c12880d12a01b198e66cd89",
+                "reference": "e2207297ebcbae886c12880d12a01b198e66cd89",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -608,20 +553,20 @@
                 "framework",
                 "swoole"
             ],
-            "time": "2020-01-14T02:14:24+00:00"
+            "time": "2020-06-11T08:43:56+00:00"
         },
         {
             "name": "easyswoole/pool",
-            "version": "1.0.4",
+            "version": "1.0.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/easy-swoole/pool.git",
-                "reference": "c0755e242fb7a587d9d54d6560b0b565527b6e52"
+                "reference": "f64372e93a0313ffb116d8d6f0d87c9451300d85"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/easy-swoole/pool/zipball/c0755e242fb7a587d9d54d6560b0b565527b6e52",
-                "reference": "c0755e242fb7a587d9d54d6560b0b565527b6e52",
+                "url": "https://api.github.com/repos/easy-swoole/pool/zipball/f64372e93a0313ffb116d8d6f0d87c9451300d85",
+                "reference": "f64372e93a0313ffb116d8d6f0d87c9451300d85",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -631,6 +576,7 @@
                 ]
             },
             "require": {
+                "easyswoole/component": "^2.2.1",
                 "easyswoole/spl": "^1.3",
                 "easyswoole/utility": "^1.1",
                 "ext-json": "*",
@@ -643,7 +589,8 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "EasySwoole\\Pool\\": "src/"
+                    "EasySwoole\\Pool\\": "src/",
+                    "EasySwoole\\Pool\\Tests\\": "tests/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -664,20 +611,20 @@
                 "framework",
                 "swoole"
             ],
-            "time": "2019-12-20T16:01:23+00:00"
+            "time": "2020-05-31T13:57:38+00:00"
         },
         {
             "name": "easyswoole/redis",
-            "version": "1.1.5",
+            "version": "1.3.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/easy-swoole/redis.git",
-                "reference": "cd8bd33d2149bf761f678a006fa1058f77110350"
+                "reference": "abcbf9e5e86b988e2930d9f755e44df4f2e44f16"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/easy-swoole/redis/zipball/cd8bd33d2149bf761f678a006fa1058f77110350",
-                "reference": "cd8bd33d2149bf761f678a006fa1058f77110350",
+                "url": "https://api.github.com/repos/easy-swoole/redis/zipball/abcbf9e5e86b988e2930d9f755e44df4f2e44f16",
+                "reference": "abcbf9e5e86b988e2930d9f755e44df4f2e44f16",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -719,20 +666,20 @@
                 "framework",
                 "swoole"
             ],
-            "time": "2020-01-14T02:12:17+00:00"
+            "time": "2020-06-04T02:07:07+00:00"
         },
         {
             "name": "easyswoole/redis-pool",
-            "version": "2.0.10",
+            "version": "2.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/easy-swoole/redis-pool.git",
-                "reference": "5bc5d412823ed45e5f2124260f671ffc61bfe9a3"
+                "reference": "3d6d0601f80ce2ad16764c534078b5970d85f6da"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/easy-swoole/redis-pool/zipball/5bc5d412823ed45e5f2124260f671ffc61bfe9a3",
-                "reference": "5bc5d412823ed45e5f2124260f671ffc61bfe9a3",
+                "url": "https://api.github.com/repos/easy-swoole/redis-pool/zipball/3d6d0601f80ce2ad16764c534078b5970d85f6da",
+                "reference": "3d6d0601f80ce2ad16764c534078b5970d85f6da",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -774,20 +721,130 @@
                 "framework",
                 "swoole"
             ],
-            "time": "2019-12-14T05:03:43+00:00"
+            "time": "2020-03-09T07:04:44+00:00"
         },
         {
-            "name": "easyswoole/spl",
-            "version": "1.3.3",
+            "name": "easyswoole/session",
+            "version": "2.0.7",
             "source": {
                 "type": "git",
-                "url": "https://github.com/easy-swoole/spl.git",
-                "reference": "d0fb72ee0a9febf64a241ebc1cbcaad47d657570"
+                "url": "https://github.com/easy-swoole/session.git",
+                "reference": "b3b5732e9f1d769c515905cab0d78f0a2148ba5b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/easy-swoole/spl/zipball/d0fb72ee0a9febf64a241ebc1cbcaad47d657570",
-                "reference": "d0fb72ee0a9febf64a241ebc1cbcaad47d657570",
+                "url": "https://api.github.com/repos/easy-swoole/session/zipball/b3b5732e9f1d769c515905cab0d78f0a2148ba5b",
+                "reference": "b3b5732e9f1d769c515905cab0d78f0a2148ba5b",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "require": {
+                "easyswoole/component": "^2.1",
+                "easyswoole/spl": "^1.3",
+                "easyswoole/utility": "^1.1",
+                "php": ">=7.1.0"
+            },
+            "require-dev": {
+                "easyswoole/swoole-ide-helper": "^1.2"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "EasySwoole\\Session\\": "src/",
+                    "EasySwoole\\Session\\Test\\": "tests/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "YF",
+                    "email": "291323003@qq.com"
+                }
+            ],
+            "description": "easyswoole component",
+            "homepage": "https://www.easyswoole.com/",
+            "keywords": [
+                "async",
+                "easyswoole",
+                "framework",
+                "swoole"
+            ],
+            "time": "2020-04-02T09:45:00+00:00"
+        },
+        {
+            "name": "easyswoole/socket",
+            "version": "1.1.12",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/easy-swoole/socket.git",
+                "reference": "d3e88221e4af6cb138b1b85b709d6349202ad11c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/easy-swoole/socket/zipball/d3e88221e4af6cb138b1b85b709d6349202ad11c",
+                "reference": "d3e88221e4af6cb138b1b85b709d6349202ad11c",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "require": {
+                "easyswoole/spl": "^1.0",
+                "php": ">=7.1.0"
+            },
+            "require-dev": {
+                "easyswoole/phpunit": "^1.0",
+                "easyswoole/swoole-ide-helper": "^1.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "EasySwoole\\Socket\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "YF",
+                    "email": "291323003@qq.com"
+                }
+            ],
+            "description": "An efficient swoole framework",
+            "homepage": "https://www.easyswoole.com/",
+            "keywords": [
+                "async",
+                "easyswoole",
+                "framework",
+                "swoole"
+            ],
+            "time": "2020-04-07T06:30:06+00:00"
+        },
+        {
+            "name": "easyswoole/spl",
+            "version": "1.3.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/easy-swoole/spl.git",
+                "reference": "b9d74dfbeb59086c51616ba09d7728cea7351d05"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/easy-swoole/spl/zipball/b9d74dfbeb59086c51616ba09d7728cea7351d05",
+                "reference": "b9d74dfbeb59086c51616ba09d7728cea7351d05",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -801,7 +858,8 @@
                 "php": ">=7.1.0"
             },
             "require-dev": {
-                "easyswoole/phpunit": "^1.0"
+                "easyswoole/phpunit": "^1.0",
+                "easyswoole/swoole-ide-helper": "^1.0"
             },
             "type": "library",
             "autoload": {
@@ -828,20 +886,20 @@
                 "framework",
                 "swoole"
             ],
-            "time": "2019-12-11T03:16:51+00:00"
+            "time": "2020-04-05T15:50:30+00:00"
         },
         {
             "name": "easyswoole/task",
-            "version": "1.0.5",
+            "version": "1.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/easy-swoole/task.git",
-                "reference": "a58f85a8b2f552b805c62c99904d4f25940d868d"
+                "reference": "3694bab2ba614c8d78c4930c721c934635b1c9e3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/easy-swoole/task/zipball/a58f85a8b2f552b805c62c99904d4f25940d868d",
-                "reference": "a58f85a8b2f552b805c62c99904d4f25940d868d",
+                "url": "https://api.github.com/repos/easy-swoole/task/zipball/3694bab2ba614c8d78c4930c721c934635b1c9e3",
+                "reference": "3694bab2ba614c8d78c4930c721c934635b1c9e3",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -853,7 +911,8 @@
             "require": {
                 "easyswoole/component": "^2.0",
                 "easyswoole/spl": "^1.2",
-                "ext-swoole": ">=4.4.5"
+                "ext-swoole": ">=4.4.5",
+                "opis/closure": "^3.5"
             },
             "require-dev": {
                 "easyswoole/swoole-ide-helper": "^1.0"
@@ -872,7 +931,7 @@
             "keywords": [
                 "easyswoole"
             ],
-            "time": "2019-10-15T07:14:36+00:00"
+            "time": "2020-04-06T14:02:57+00:00"
         },
         {
             "name": "easyswoole/template",
@@ -983,16 +1042,16 @@
         },
         {
             "name": "easyswoole/utility",
-            "version": "1.1.2",
+            "version": "1.1.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/easy-swoole/utility.git",
-                "reference": "585252be9ed0cdfd8badbddb7df60edce794daf0"
+                "reference": "109f4d86906d9610e2feedfcb04a8ecb0e5dba8b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/easy-swoole/utility/zipball/585252be9ed0cdfd8badbddb7df60edce794daf0",
-                "reference": "585252be9ed0cdfd8badbddb7df60edce794daf0",
+                "url": "https://api.github.com/repos/easy-swoole/utility/zipball/109f4d86906d9610e2feedfcb04a8ecb0e5dba8b",
+                "reference": "109f4d86906d9610e2feedfcb04a8ecb0e5dba8b",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -1023,124 +1082,7 @@
                 }
             ],
             "description": "easyswoole extension tool library",
-            "time": "2019-09-19T03:02:37+00:00"
-        },
-        {
-            "name": "easyswoole/validate",
-            "version": "1.2.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/easy-swoole/validate.git",
-                "reference": "6caafd4ceef47b487e0f0617cad85c39ededc635"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/easy-swoole/validate/zipball/6caafd4ceef47b487e0f0617cad85c39ededc635",
-                "reference": "6caafd4ceef47b487e0f0617cad85c39ededc635",
-                "shasum": "",
-                "mirrors": [
-                    {
-                        "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
-                        "preferred": true
-                    }
-                ]
-            },
-            "require": {
-                "easyswoole/spl": "^1.0",
-                "php": ">=7.1.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "^7.4"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "EasySwoole\\Validate\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "Apache-2.0"
-            ],
-            "authors": [
-                {
-                    "name": "YF",
-                    "email": "291323003@qq.com"
-                }
-            ],
-            "description": "An efficient swoole framework",
-            "homepage": "https://www.easyswoole.com/",
-            "keywords": [
-                "async",
-                "easyswoole",
-                "framework",
-                "swoole"
-            ],
-            "time": "2020-01-08T09:39:13+00:00"
-        },
-        {
-            "name": "jeremeamia/superclosure",
-            "version": "2.4.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/jeremeamia/super_closure.git",
-                "reference": "5707d5821b30b9a07acfb4d76949784aaa0e9ce9"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/jeremeamia/super_closure/zipball/5707d5821b30b9a07acfb4d76949784aaa0e9ce9",
-                "reference": "5707d5821b30b9a07acfb4d76949784aaa0e9ce9",
-                "shasum": "",
-                "mirrors": [
-                    {
-                        "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
-                        "preferred": true
-                    }
-                ]
-            },
-            "require": {
-                "nikic/php-parser": "^1.2|^2.0|^3.0|^4.0",
-                "php": ">=5.4",
-                "symfony/polyfill-php56": "^1.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "^4.0|^5.0"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "2.4-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "SuperClosure\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Jeremy Lindblom",
-                    "email": "jeremeamia@gmail.com",
-                    "homepage": "https://github.com/jeremeamia",
-                    "role": "Developer"
-                }
-            ],
-            "description": "Serialize Closure objects, including their context and binding",
-            "homepage": "https://github.com/jeremeamia/super_closure",
-            "keywords": [
-                "closure",
-                "function",
-                "lambda",
-                "parser",
-                "serializable",
-                "serialize",
-                "tokenizer"
-            ],
-            "time": "2018-03-21T22:21:57+00:00"
+            "time": "2020-05-19T03:06:24+00:00"
         },
         {
             "name": "nikic/fast-route",
@@ -1195,17 +1137,17 @@
             "time": "2018-02-13T20:26:39+00:00"
         },
         {
-            "name": "nikic/php-parser",
-            "version": "v4.3.0",
+            "name": "opis/closure",
+            "version": "3.5.4",
             "source": {
                 "type": "git",
-                "url": "https://github.com/nikic/PHP-Parser.git",
-                "reference": "9a9981c347c5c49d6dfe5cf826bb882b824080dc"
+                "url": "https://github.com/opis/closure.git",
+                "reference": "1d0deef692f66dae5d70663caee2867d0971306b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/9a9981c347c5c49d6dfe5cf826bb882b824080dc",
-                "reference": "9a9981c347c5c49d6dfe5cf826bb882b824080dc",
+                "url": "https://api.github.com/repos/opis/closure/zipball/1d0deef692f66dae5d70663caee2867d0971306b",
+                "reference": "1d0deef692f66dae5d70663caee2867d0971306b",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -1215,42 +1157,51 @@
                 ]
             },
             "require": {
-                "ext-tokenizer": "*",
-                "php": ">=7.0"
+                "php": "^5.4 || ^7.0"
             },
             "require-dev": {
-                "ircmaxell/php-yacc": "0.0.5",
-                "phpunit/phpunit": "^6.5 || ^7.0 || ^8.0"
+                "jeremeamia/superclosure": "^2.0",
+                "phpunit/phpunit": "^4.0 || ^5.0 || ^6.0 || ^7.0"
             },
-            "bin": [
-                "bin/php-parse"
-            ],
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "4.3-dev"
+                    "dev-master": "3.5.x-dev"
                 }
             },
             "autoload": {
                 "psr-4": {
-                    "PhpParser\\": "lib/PhpParser"
-                }
+                    "Opis\\Closure\\": "src/"
+                },
+                "files": [
+                    "functions.php"
+                ]
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "BSD-3-Clause"
+                "MIT"
             ],
             "authors": [
                 {
-                    "name": "Nikita Popov"
+                    "name": "Marius Sarca",
+                    "email": "marius.sarca@gmail.com"
+                },
+                {
+                    "name": "Sorin Sarca",
+                    "email": "sarca_sorin@hotmail.com"
                 }
             ],
-            "description": "A PHP parser written in PHP",
+            "description": "A library that can be used to serialize closures (anonymous functions) and arbitrary objects.",
+            "homepage": "https://opis.io/closure",
             "keywords": [
-                "parser",
-                "php"
+                "anonymous functions",
+                "closure",
+                "function",
+                "serializable",
+                "serialization",
+                "serialize"
             ],
-            "time": "2019-11-08T13:50:10+00:00"
+            "time": "2020-06-07T11:41:29+00:00"
         },
         {
             "name": "psr/http-message",
@@ -1307,434 +1258,6 @@
                 "response"
             ],
             "time": "2016-08-06T14:39:51+00:00"
-        },
-        {
-            "name": "psr/log",
-            "version": "1.1.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/php-fig/log.git",
-                "reference": "446d54b4cb6bf489fc9d75f55843658e6f25d801"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/php-fig/log/zipball/446d54b4cb6bf489fc9d75f55843658e6f25d801",
-                "reference": "446d54b4cb6bf489fc9d75f55843658e6f25d801",
-                "shasum": "",
-                "mirrors": [
-                    {
-                        "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
-                        "preferred": true
-                    }
-                ]
-            },
-            "require": {
-                "php": ">=5.3.0"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.1.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Psr\\Log\\": "Psr/Log/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "PHP-FIG",
-                    "homepage": "http://www.php-fig.org/"
-                }
-            ],
-            "description": "Common interface for logging libraries",
-            "homepage": "https://github.com/php-fig/log",
-            "keywords": [
-                "log",
-                "psr",
-                "psr-3"
-            ],
-            "time": "2019-11-01T11:05:21+00:00"
-        },
-        {
-            "name": "psr/simple-cache",
-            "version": "1.0.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/php-fig/simple-cache.git",
-                "reference": "408d5eafb83c57f6365a3ca330ff23aa4a5fa39b"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/php-fig/simple-cache/zipball/408d5eafb83c57f6365a3ca330ff23aa4a5fa39b",
-                "reference": "408d5eafb83c57f6365a3ca330ff23aa4a5fa39b",
-                "shasum": "",
-                "mirrors": [
-                    {
-                        "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
-                        "preferred": true
-                    }
-                ]
-            },
-            "require": {
-                "php": ">=5.3.0"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.0.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Psr\\SimpleCache\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "PHP-FIG",
-                    "homepage": "http://www.php-fig.org/"
-                }
-            ],
-            "description": "Common interfaces for simple caching",
-            "keywords": [
-                "cache",
-                "caching",
-                "psr",
-                "psr-16",
-                "simple-cache"
-            ],
-            "time": "2017-10-23T01:57:42+00:00"
-        },
-        {
-            "name": "smarty/smarty",
-            "version": "v3.1.34",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/smarty-php/smarty.git",
-                "reference": "c9f0de05f41b9e52798b268ab1e625fac3b8578c"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/smarty-php/smarty/zipball/c9f0de05f41b9e52798b268ab1e625fac3b8578c",
-                "reference": "c9f0de05f41b9e52798b268ab1e625fac3b8578c",
-                "shasum": "",
-                "mirrors": [
-                    {
-                        "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
-                        "preferred": true
-                    }
-                ]
-            },
-            "require": {
-                "php": ">=5.2"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "6.4.1"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "3.1.x-dev"
-                }
-            },
-            "autoload": {
-                "classmap": [
-                    "libs/"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "LGPL-3.0"
-            ],
-            "authors": [
-                {
-                    "name": "Monte Ohrt",
-                    "email": "monte@ohrt.com"
-                },
-                {
-                    "name": "Uwe Tews",
-                    "email": "uwe.tews@googlemail.com"
-                },
-                {
-                    "name": "Rodney Rehm",
-                    "email": "rodney.rehm@medialize.de"
-                }
-            ],
-            "description": "Smarty - the compiling PHP template engine",
-            "homepage": "http://www.smarty.net",
-            "keywords": [
-                "templating"
-            ],
-            "time": "2019-02-28T06:42:20+00:00"
-        },
-        {
-            "name": "symfony/polyfill-php56",
-            "version": "v1.13.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/symfony/polyfill-php56.git",
-                "reference": "53dd1cdf3cb986893ccf2b96665b25b3abb384f4"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-php56/zipball/53dd1cdf3cb986893ccf2b96665b25b3abb384f4",
-                "reference": "53dd1cdf3cb986893ccf2b96665b25b3abb384f4",
-                "shasum": "",
-                "mirrors": [
-                    {
-                        "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
-                        "preferred": true
-                    }
-                ]
-            },
-            "require": {
-                "php": ">=5.3.3",
-                "symfony/polyfill-util": "~1.0"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.13-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Symfony\\Polyfill\\Php56\\": ""
-                },
-                "files": [
-                    "bootstrap.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Nicolas Grekas",
-                    "email": "p@tchwork.com"
-                },
-                {
-                    "name": "Symfony Community",
-                    "homepage": "https://symfony.com/contributors"
-                }
-            ],
-            "description": "Symfony polyfill backporting some PHP 5.6+ features to lower PHP versions",
-            "homepage": "https://symfony.com",
-            "keywords": [
-                "compatibility",
-                "polyfill",
-                "portable",
-                "shim"
-            ],
-            "time": "2019-11-27T13:56:44+00:00"
-        },
-        {
-            "name": "symfony/polyfill-util",
-            "version": "v1.13.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/symfony/polyfill-util.git",
-                "reference": "964a67f293b66b95883a5ed918a65354fcd2258f"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-util/zipball/964a67f293b66b95883a5ed918a65354fcd2258f",
-                "reference": "964a67f293b66b95883a5ed918a65354fcd2258f",
-                "shasum": "",
-                "mirrors": [
-                    {
-                        "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
-                        "preferred": true
-                    }
-                ]
-            },
-            "require": {
-                "php": ">=5.3.3"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.13-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Symfony\\Polyfill\\Util\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Nicolas Grekas",
-                    "email": "p@tchwork.com"
-                },
-                {
-                    "name": "Symfony Community",
-                    "homepage": "https://symfony.com/contributors"
-                }
-            ],
-            "description": "Symfony utilities for portability of PHP codes",
-            "homepage": "https://symfony.com",
-            "keywords": [
-                "compat",
-                "compatibility",
-                "polyfill",
-                "shim"
-            ],
-            "time": "2019-11-27T13:56:44+00:00"
-        },
-        {
-            "name": "topthink/think-helper",
-            "version": "v3.1.3",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/top-think/think-helper.git",
-                "reference": "4d85dfd3778623bbb1de3648f1dcd0c82f4439f4"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/top-think/think-helper/zipball/4d85dfd3778623bbb1de3648f1dcd0c82f4439f4",
-                "reference": "4d85dfd3778623bbb1de3648f1dcd0c82f4439f4",
-                "shasum": "",
-                "mirrors": [
-                    {
-                        "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
-                        "preferred": true
-                    }
-                ]
-            },
-            "require": {
-                "php": ">=7.1.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "think\\": "src"
-                },
-                "files": [
-                    "src/helper.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "Apache-2.0"
-            ],
-            "authors": [
-                {
-                    "name": "yunwuxin",
-                    "email": "448901948@qq.com"
-                }
-            ],
-            "description": "The ThinkPHP6 Helper Package",
-            "time": "2019-09-30T02:36:48+00:00"
-        },
-        {
-            "name": "topthink/think-orm",
-            "version": "v2.0.31",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/top-think/think-orm.git",
-                "reference": "d6965dfae21f150e29cc899ab6f9b1bd2c0f2ee4"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/top-think/think-orm/zipball/d6965dfae21f150e29cc899ab6f9b1bd2c0f2ee4",
-                "reference": "d6965dfae21f150e29cc899ab6f9b1bd2c0f2ee4",
-                "shasum": "",
-                "mirrors": [
-                    {
-                        "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
-                        "preferred": true
-                    }
-                ]
-            },
-            "require": {
-                "ext-json": "*",
-                "php": ">=7.1.0",
-                "psr/log": "~1.0",
-                "psr/simple-cache": "^1.0",
-                "topthink/think-helper": "^3.1"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "think\\": "src"
-                },
-                "files": []
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "Apache-2.0"
-            ],
-            "authors": [
-                {
-                    "name": "liu21st",
-                    "email": "liu21st@gmail.com"
-                }
-            ],
-            "description": "think orm",
-            "keywords": [
-                "database",
-                "orm"
-            ],
-            "time": "2020-01-07T10:05:10+00:00"
-        },
-        {
-            "name": "topthink/think-template",
-            "version": "v2.0.7",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/top-think/think-template.git",
-                "reference": "e98bdbb4a4c94b442f17dfceba81e0134d4fbd19"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/top-think/think-template/zipball/e98bdbb4a4c94b442f17dfceba81e0134d4fbd19",
-                "reference": "e98bdbb4a4c94b442f17dfceba81e0134d4fbd19",
-                "shasum": "",
-                "mirrors": [
-                    {
-                        "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
-                        "preferred": true
-                    }
-                ]
-            },
-            "require": {
-                "php": ">=7.1.0",
-                "psr/simple-cache": "^1.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "think\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "Apache-2.0"
-            ],
-            "authors": [
-                {
-                    "name": "liu21st",
-                    "email": "liu21st@gmail.com"
-                }
-            ],
-            "description": "the php template engine",
-            "time": "2019-09-20T15:31:04+00:00"
         }
     ],
     "packages-dev": [],

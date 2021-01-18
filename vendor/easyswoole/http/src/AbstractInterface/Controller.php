@@ -11,7 +11,6 @@ namespace EasySwoole\Http\AbstractInterface;
 use EasySwoole\Http\Message\Status;
 use EasySwoole\Http\Request;
 use EasySwoole\Http\Response;
-use EasySwoole\Validate\Validate;
 
 abstract class Controller
 {
@@ -47,16 +46,14 @@ abstract class Controller
         $ref = new \ReflectionClass(static::class);
         $properties = $ref->getProperties();
         foreach ($properties as $property) {
-            //不重置静态变量与保护私有变量
-            if ($property->isPublic() && !$property->isStatic()) {
-                $name = $property->getName();
+            $name = $property->getName();
+            $this->propertyReflections[$name] = $property;
+            //不重置静态变量与私有变量
+            if (($property->isPublic() || $property->isProtected()) && !$property->isStatic()) {
                 $this->defaultProperties[$name] = $this->{$name};
-                $this->propertyReflections[$name] = $property;
             }
         }
     }
-
-    abstract function index();
 
     protected function getAllowMethodReflections()
     {
@@ -76,9 +73,16 @@ abstract class Controller
         }
     }
 
+    function index()
+    {
+        $class = static::class;
+        $this->writeJson(Status::CODE_OK,null,"this is {$class} index action");
+    }
+
     protected function actionNotFound(?string $action)
     {
-        $this->response()->withStatus(Status::CODE_NOT_FOUND);
+        $class = static::class;
+        $this->writeJson(Status::CODE_NOT_FOUND,null,"{$class} has not action for {$action}");
     }
 
     protected function afterAction(?string $actionName): void
@@ -98,43 +102,6 @@ abstract class Controller
     protected function getActionName(): ?string
     {
         return $this->actionName;
-    }
-
-    public function __hook(?string $actionName, Request $request, Response $response,callable $actionHook = null)
-    {
-        $forwardPath = null;
-        $this->request = $request;
-        $this->response = $response;
-        $this->actionName = $actionName;
-        try {
-            if ($this->onRequest($actionName) !== false) {
-                if (isset($this->allowMethodReflections[$actionName])) {
-                    if($actionHook){
-                        $forwardPath = call_user_func($actionHook);
-                    }else{
-                        $forwardPath = $this->$actionName();
-                    }
-                } else {
-                    $forwardPath = $this->actionNotFound($actionName);
-                }
-            }
-        } catch (\Throwable $throwable) {
-            //若没有重构onException，直接抛出给上层
-            $this->onException($throwable);
-        } finally {
-            try {
-                $this->afterAction($actionName);
-            } catch (\Throwable $throwable) {
-                $this->onException($throwable);
-            } finally {
-                try {
-                    $this->gc();
-                } catch (\Throwable $throwable) {
-                    $this->onException($throwable);
-                }
-            }
-        }
-        return $forwardPath;
     }
 
     protected function request(): Request
@@ -176,8 +143,43 @@ abstract class Controller
         return simplexml_load_string($this->request()->getBody()->__toString(), $className, $options);
     }
 
-    protected function validate(Validate $validate)
+    //该方法用于保留对外调用
+    public function __hook(?string $actionName, Request $request, Response $response)
     {
-        return $validate->validate($this->request()->getRequestParam());
+        $this->request = $request;
+        $this->response = $response;
+        $this->actionName = $actionName;
+        return $this->__exec();
+    }
+    //允许用户修改整个请求执行流程
+    protected function __exec()
+    {
+        $actionName = $this->actionName;
+        $forwardPath = null;
+        try {
+            if ($this->onRequest($actionName) !== false) {
+                if (isset($this->allowMethodReflections[$actionName])) {
+                    $forwardPath = $this->$actionName();
+                } else {
+                    $forwardPath = $this->actionNotFound($actionName);
+                }
+            }
+        } catch (\Throwable $throwable) {
+            //若没有重构onException，直接抛出给上层
+            $this->onException($throwable);
+        } finally {
+            try {
+                $this->afterAction($actionName);
+            } catch (\Throwable $throwable) {
+                $this->onException($throwable);
+            } finally {
+                try {
+                    $this->gc();
+                } catch (\Throwable $throwable) {
+                    $this->onException($throwable);
+                }
+            }
+        }
+        return $forwardPath;
     }
 }

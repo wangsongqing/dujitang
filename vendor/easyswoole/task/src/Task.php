@@ -17,9 +17,12 @@ class Task
     private $config;
     private $attachServer = false;
 
-    const ERROR_PROCESS_BUSY = -1;
-    const ERROR_PACKAGE_ERROR = -2;
-    const ERROR_TASK_ERROR = -3;
+    const PUSH_IN_QUEUE = 0;
+    const PUSH_QUEUE_FAIL = -1;
+    const ERROR_PROCESS_BUSY = -2;
+    const ERROR_PACKAGE_ERROR = -3;
+    const ERROR_TASK_ERROR = -4;
+    const ERROR_PACKAGE_EXPIRE = -5;
 
     function __construct(Config $config)
     {
@@ -29,10 +32,36 @@ class Task
         $this->table->column('success',Table::TYPE_INT,4);
         $this->table->column('fail',Table::TYPE_INT,4);
         $this->table->column('pid',Table::TYPE_INT,4);
-        $this->table->column('workerId',Table::TYPE_INT,4);
         $this->table->column('workerIndex',Table::TYPE_INT,4);
         $this->table->create();
         $this->config = $config;
+    }
+
+    static function errCode2Msg(int $code):string
+    {
+        switch ($code){
+            case self::PUSH_IN_QUEUE:{
+                return 'push task in queue';
+            }
+            case self::PUSH_QUEUE_FAIL:{
+                return 'push task to queue fail';
+            }
+            case self::ERROR_PROCESS_BUSY:{
+                return 'task process busy';
+            }
+            case self::ERROR_PACKAGE_ERROR:{
+                return 'task package decode error';
+            }
+            case self::ERROR_TASK_ERROR:{
+                return "task run error";
+            }
+            case self::ERROR_PACKAGE_EXPIRE:{
+                return "task package expire";
+            }
+            default:{
+                return 'unknown error';
+            }
+        }
     }
 
     public function attachToServer(Server $server)
@@ -48,10 +77,12 @@ class Task
     public function __initProcess():array
     {
         $ret = [];
+        $serverName = $this->config->getServerName();
         for($i = 0;$i < $this->config->getWorkerNum();$i++){
             $config = new UnixProcessConfig();
-            $config->setProcessName($this->config->getServerName().".TaskWorker");
+            $config->setProcessName("{$serverName}.TaskWorker.{$i}");
             $config->setSocketFile($this->idToUnixName($i));
+            $config->setProcessGroup("{$serverName}.TaskWorker");
             $config->setArg([
                 'workerIndex'=>$i,
                 'infoTable'=>$this->table,
@@ -63,7 +94,7 @@ class Task
         return  $ret;
     }
 
-    public function async($task,callable $finishCallback = null,$taskWorkerId = null)
+    public function async($task,callable $finishCallback = null,$taskWorkerId = null):?int
     {
         if($taskWorkerId === null){
             $id = $this->findOutFreeId();
@@ -71,31 +102,20 @@ class Task
             $id = $taskWorkerId;
         }
         if($id !== null){
-            if($task instanceof \Closure){
-                try{
-                    $task = new SuperClosure($task);
-                }catch (\Throwable $throwable){
-                    return false;
-                }
-            }
-            if($finishCallback instanceof \Closure){
-                try{
-                    $finishCallback = new SuperClosure($finishCallback);
-                }catch (\Throwable $throwable){
-                    return false;
-                }
-            }
             $package = new Package();
             $package->setType($package::ASYNC);
             $package->setTask($task);
             $package->setOnFinish($finishCallback);
-            $package->setExpire(round(microtime(true) + $this->config->getTimeout(),4));
+            $package->setExpire(round(microtime(true) + $this->config->getTimeout() - 0.01,3));
             return $this->sendAndRecv($package,$id);
         }else{
-            return false;
+            return null;
         }
     }
 
+    /*
+     * 同步返回执行结果
+     */
     public function sync($task,$timeout = 3.0,$taskWorkerId = null)
     {
         if($taskWorkerId === null){
@@ -104,20 +124,13 @@ class Task
             $id = $taskWorkerId;
         }
         if($id !== null){
-            if($task instanceof \Closure){
-                try{
-                    $task = new SuperClosure($task);
-                }catch (\Throwable $throwable){
-                    return false;
-                }
-            }
             $package = new Package();
             $package->setType($package::SYNC);
             $package->setTask($task);
-            $package->setExpire(round(microtime(true) + $timeout,4));
+            $package->setExpire(round(microtime(true) + $timeout - 0.01,4));
             return $this->sendAndRecv($package,$id,$timeout);
         }else{
-            return false;
+            return null;
         }
     }
 
@@ -151,7 +164,7 @@ class Task
 
     private function idToUnixName(int $id):string
     {
-        return $this->config->getTempDir()."/TaskWorker.".md5($this->config->getServerName())."{$id}.sock";
+        return $this->config->getTempDir()."/{$this->config->getServerName()}.TaskWorker.{$id}.sock";
     }
 
     private function sendAndRecv(Package $package,int $id,float $timeout = null)
@@ -160,10 +173,11 @@ class Task
             $timeout = $this->config->getTimeout();
         }
         $client = new UnixClient($this->idToUnixName($id));
-        $client->send(Protocol::pack(serialize($package)));
+        $client->send(Protocol::pack(\Opis\Closure\serialize($package)));
         $ret = $client->recv($timeout);
+        $client->close();
         if (!empty($ret)) {
-            return unserialize(Protocol::unpack($ret));
+            return \Opis\Closure\unserialize(Protocol::unpack($ret));
         }else{
             return null;
         }

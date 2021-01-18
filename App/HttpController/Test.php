@@ -3,9 +3,9 @@ namespace App\HttpController;
 
 
 use EasySwoole\Http\AbstractInterface\Controller;
-use think\facade\Db;
 use EasySwoole\Template\Render;
 use EasySwoole\EasySwoole\ServerManager;
+use App\Common\NoSql\PRedis;
 
 class Test extends Controller
 {
@@ -102,6 +102,18 @@ class Test extends Controller
     {
         $redis = \EasySwoole\RedisPool\Redis::defer('redis');
         $data = $redis->get('a');
+        $this->writeJson('1',$data,'success');
+    }
+
+    public function faceredisset()
+    {
+         PRedis::setex('key1', 10,'wangsongqing123');
+        $this->writeJson('1','ok','success');
+    }
+
+    public function faceredisget()
+    {
+        $data = PRedis::get('key1', 10,'wangsongqing123');
         $this->writeJson('1',$data,'success');
     }
 }
