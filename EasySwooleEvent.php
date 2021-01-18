@@ -24,7 +24,7 @@ class EasySwooleEvent implements Event
     {
         // TODO: Implement initialize() method.
         date_default_timezone_set('Asia/Shanghai');
-        define(ROOT, __DIR__);
+        define('ROOT', __DIR__);
 	    self::loadDB();
     }
 
