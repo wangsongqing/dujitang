@@ -5,5 +5,6 @@
 - 项目运行前置条件：PHP>7、swoole、Redis、Mysql 
 - 需要导入mysql数据  soul.sql
 - 修改env相关配置  
+- 启动项目: php bin/hyperf.php start  
 - [点击干一碗毒鸡汤](http://www.xmwme.com)
     
