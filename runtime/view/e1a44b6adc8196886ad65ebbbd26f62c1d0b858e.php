@@ -18,8 +18,8 @@
     <meta property="og:description"
           content="我们精心熬制了有屎以来最毒1000多条经典毒鸡汤,句句“治愈”人心! 只为了帮你更好的看清人生认识自己，直面现实,直面惨淡的人生,不给你励志,不给你慰藉,像一根鞭猛的抽你一下,使你清醒,知道这个世界和你自己最真实的一面,是青少年手机里的必备宝典。"/>
     <link rel="icon" href="/favicon.ico" type="image/x-icon" id="page_favionc">
-    <link href="http://dujitang.org/css/min.css" rel="stylesheet">
-    <link rel="alternate icon" type="image/png" href="http://dujitang.org/img/icon.png">
+    <link href="<?php echo env('APP_URL') ?>/css/min.css" rel="stylesheet">
+    <link rel="alternate icon" type="image/png" href="<?php echo env('APP_URL') ?>/img/icon.png">
 
 </head>
 <body>
@@ -27,7 +27,7 @@
     <div class="container">
         <div class="row" style="margin-top: 30px;">
             <div class="col">
-                <img src="http://dujitang.org/img/logo.png">
+                <img src="<?php echo env('APP_URL') ?>/img/logo.png">
             </div>
             <div class="col">
                 <div class="float-right" style="padding-top: 0px;">
@@ -58,7 +58,7 @@
 </body>
 </html>
 
-<script type="text/javascript" src="http://dujitang.org/js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="<?php echo env('APP_URL') ?>/js/jquery-3.6.0.min.js"></script>
 <script>
     $(document).ready(function(){
         getData();
@@ -69,7 +69,7 @@
     });
 
     function getData(){
-        $.get("http://dujitang.org/get_data",function(data,status){
+        $.get("<?php echo env('APP_URL') ?>/get_data",function(data,status){
             var title = data.data.title;
             $("#sentence").html(title)
         });
